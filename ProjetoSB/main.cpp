@@ -1,11 +1,9 @@
 /*
  * main.cpp
  *
- *  Created on: 09/01/2013
- *      Author: Willian
+ *  Created on: Jan 9, 2013
+ *      Author: willian
  */
-
-
 
 
 #include <iostream>
@@ -13,5 +11,5 @@
 using namespace std;
 
 int main () {
-
+	cout << "hello";
 }
