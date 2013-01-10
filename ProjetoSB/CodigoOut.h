@@ -13,6 +13,11 @@
 #ifndef _CODIGOOUT_H
 #define _CODIGOOUT_H
 
+#include <string>
+#include <list>
+
+using namespace std;
+
 class CodigoOut {
 public:
 	string pegaLinha(int numLinha);
@@ -20,7 +25,7 @@ public:
 	void escreveSaida();
 private:
 	string url;
-	List<string> codigo;
+	list<string> codigo;
 };
 
 #endif  //_CODIGOOUT_H

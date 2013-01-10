@@ -15,7 +15,11 @@
 
 #include "TipoOperacao.h"
 
-typedef struct ItemOperacao {
+#include <string>
+
+using namespace std;
+
+struct ItemOperacao {
 	string nome;
 	TipoOperacao tipo;
 	int codigo;

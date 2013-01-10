@@ -13,8 +13,12 @@
 #ifndef _ITEMREGISTRADOR_H
 #define _ITEMREGISTRADOR_H
 
+#include <string>
 
-typedef struct ItemRegistrador {
+using namespace std;
+
+
+struct ItemRegistrador {
 	string nome;
 	int codigo;
 };

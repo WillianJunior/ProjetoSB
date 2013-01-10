@@ -7,9 +7,10 @@
 
 
 #include <iostream>
+#include "Registradores.h"
 
 using namespace std;
 
 int main () {
-	cout << "hello";
+	cout << "hello" << endl << s0.nome << endl;
 }

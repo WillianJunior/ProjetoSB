@@ -4,12 +4,24 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../CodigoIn.cpp \
+../CodigoOut.cpp \
+../Montador.cpp \
+../Operacoes.cpp \
 ../main.cpp 
 
 OBJS += \
+./CodigoIn.o \
+./CodigoOut.o \
+./Montador.o \
+./Operacoes.o \
 ./main.o 
 
 CPP_DEPS += \
+./CodigoIn.d \
+./CodigoOut.d \
+./Montador.d \
+./Operacoes.d \
 ./main.d 
 
 

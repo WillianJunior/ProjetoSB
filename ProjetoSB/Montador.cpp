@@ -12,7 +12,7 @@
 
 #include "Montador.h"
 
-void Montador::Montador(int CodigoIn, int CodigoOut) {
+Montador::Montador(int CodigoIn, int CodigoOut) {
 
 }
 
@@ -28,11 +28,11 @@ void Montador::segundaPassagem() {
 
 }
 
-List<string> Montador::separaTokens(string linha) {
+list<string> Montador::separaTokens(string linha) {
 
 }
 
-string Montador::validaTokens(List<string> listaTokens) {
+string Montador::validaTokens(list<string> listaTokens) {
 
 }
 

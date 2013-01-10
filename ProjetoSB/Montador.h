@@ -15,20 +15,26 @@
 
 #include "CodigoIn.h"
 #include "CodigoOut.h"
+#include "ItemLabel.h"
+
+#include <string>
+#include <list>
+
+using namespace std;
 
 class Montador {
 public:
-	void Montador(int CodigoIn, int CodigoOut);
+	Montador(int CodigoIn, int CodigoOut);
 	void monta();
 private:
 	CodigoIn codigoIn;
 	CodigoOut codigoOut;
-	List<ItemLabel> listaLabels;
-	List<ItemLabel> listaDependencias;
+	list<ItemLabel> listaLabels;
+	list<ItemLabel> listaDependencias;
 	void primeiraPassagem();
 	void segundaPassagem();
-	List<string> separaTokens(string linha);
-	string validaTokens(List<string> listaTokens);
+	list<string> separaTokens(string linha);
+	string validaTokens(list<string> listaTokens);
 };
 
 #endif  //_MONTADOR_H

@@ -13,7 +13,7 @@
 #include "Operacoes.h"
 #include "ItemOperacao.h"
 
-ItemOperacao Operacoes::encontraOperacao(string nomeOperacao) {
+ItemOperacao encontraOperacao(string nomeOperacao) {
 
 }
 

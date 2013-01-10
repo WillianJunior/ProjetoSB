@@ -9,9 +9,12 @@
 //
 //
 
-
 #ifndef _CODIGOIN_H
 #define _CODIGOIN_H
+
+#include <string>
+
+using namespace std;
 
 class CodigoIn {
 public:

@@ -15,11 +15,13 @@
 
 #include "ItemOperacao.h"
 
-class Operacoes {
-public:
-	const static ItemOperacao add;
-	const static ItemOperacao sub;
-	ItemOperacao encontraOperacao(string nomeOperacao);
-};
+#include <string>
+
+using namespace std;
+
+static const struct ItemOperacao add = {"Add", R, 0};
+static const struct ItemOperacao sub = {"Sub", R, 0};
+
+ItemOperacao encontraOperacao(string nomeOperacao);
 
 #endif  //_OPERACOES_H

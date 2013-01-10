@@ -13,11 +13,9 @@
 #ifndef _REGISTRADORES_H
 #define _REGISTRADORES_H
 
+#include "ItemRegistrador.h"
 
-class Registradores {
-public:
-	const static ItemRegistrador s0 = {"$s0", 0};
-	const static ItemRegistrador s1 = {"$s1", 0};
-};
+static const struct ItemRegistrador s0 = {"$s0", 0};
+static const struct ItemRegistrador s1 = {"$s1", 0};
 
 #endif  //_REGISTRADORES_H
