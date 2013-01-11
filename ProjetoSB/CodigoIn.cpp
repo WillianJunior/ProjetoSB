@@ -12,7 +12,51 @@
 
 #include "CodigoIn.h"
 
+
 string CodigoIn::pegaLinha() {
+	string line;
+	//int numero_da_linha = 0;
+
+	if (Entrada.eof()) {
+		Entrada.close();
+		return "-FIM-";
+	}
+
+	getline (Entrada,line);
+
+	//Evitar mandar linhas que começam com . e linhas totalmente em branco.
+	while ( ! ((line.find(".")==string::npos) && (line.size() != 0)) ){
+		//Tenta pegar outra linha caso nao tenha chegado ao fim do arquivo.
+		if (!Entrada.eof()) getline (Entrada,line);
+		//Caso chegue ao fim do arquivo retorna o identificador de fim de arquivo.
+		else return "-FIM-";
+	}
+
+	return line;
+
+	/*while ( Entrada.good() )
+	    {
+	      getline (Entrada,line);
+	      numero_da_linha++;
+	      //Evitar mandar linhas que começam com . e linhas totalmente em branco.
+	      if ( (line.find(".")==string::npos) && (line.size() != 0))
+
+	      cout << line.size() <<" "<< line << endl;
+	    }
+	    Entrada.close();
+	    return "teste";
+	*/
+
 
 }
 
+
+void CodigoIn::abreArquivo(){
+
+	Entrada.open("entrada.s", ios::in);
+	if(!Entrada.is_open())
+		cout << "Problema ao abrir o arquivo de entrada!" << endl;
+	else cout << "Arquivo aberto com sucesso!" << endl;
+
+
+}
