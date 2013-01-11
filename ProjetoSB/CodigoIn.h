@@ -23,11 +23,13 @@ public:
 	string pegaLinha();
 	CodigoIn(){
 		this->abreArquivo();
+
 	};
 
 private:
 	string url;
 	fstream Entrada;
+
 	void abreArquivo();
 
 };
