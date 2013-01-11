@@ -13,9 +13,9 @@
 #include "Montador.h"
 
 
-Montador::Montador(CodigoIn codigoIn, CodigoOut codigoOut) {
-//	this->codigoIn = codigoIn;   porque não pode fazer esta atribuição?
-//	this->codigoOut = codigoOut;
+Montador::Montador(CodigoIn *codigoIn, CodigoOut *codigoOut) {
+	this->codigoIn = codigoIn;   //porque não pode fazer esta atribuição?
+	this->codigoOut = codigoOut;
 }
 
 void Montador::monta() {
@@ -31,9 +31,9 @@ void Montador::primeiraPassagem() {
 	Operacao predicado;
 
 	//TODO APAGARRRRRRRRRRRRRRRRRRRRRRRR
-	codigoIn = CodigoIn();
+//	codigoIn = CodigoIn();
 
-	while(!(linha = codigoIn.pegaLinha()).empty()) {
+	while(!(linha = codigoIn->pegaLinha()).empty()) {
 
 			//Procura o fim de um label.
 			posicao_fim_label = linha.find(":");

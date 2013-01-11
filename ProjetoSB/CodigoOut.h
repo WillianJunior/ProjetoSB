@@ -20,6 +20,8 @@ using namespace std;
 
 class CodigoOut {
 public:
+	CodigoOut() {};
+	CodigoOut(string url){this->url = url;};
 	void novaLinha(string linha);
 	string pegaLinha(int numLinha);
 	void setLinha(int numLinha,string novaLinha);

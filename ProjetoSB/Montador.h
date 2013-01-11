@@ -25,11 +25,11 @@ using namespace std;
 
 class Montador {
 public:
-	Montador(CodigoIn codigoIn, CodigoOut codigoOut);
+	Montador(CodigoIn *codigoIn, CodigoOut *codigoOut);
 	void monta();
 private:
-	CodigoIn codigoIn;
-	CodigoOut codigoOut;
+	CodigoIn *codigoIn;
+	CodigoOut *codigoOut;
 	list<ItemLabel> listaLabels;
 	list<ItemLabel> listaDependencias;
 	void primeiraPassagem();
