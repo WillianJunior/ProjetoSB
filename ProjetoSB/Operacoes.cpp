@@ -13,10 +13,6 @@
 #include "Operacoes.h"
 #include "ItemOperacao.h"
 
-string OperacaoLabel::conversaoBinaria() {
-	// TODO conversão igual à da operação binaria
-}
-
 string OperacaoBinaria::conversaoBinaria() {
 	string saida;
 	switch (operacao.tipo) {
@@ -43,7 +39,6 @@ string OperacaoBinaria::conversaoBinaria() {
 }
 
 ItemOperacao encontraOperacao(string nomeOperacao) {
-	// TODO dada uma string de uma operação "add" retorna ItemOperacao add
-
+	return listaOperacao.find(nomeOperacao)->second;
 }
 

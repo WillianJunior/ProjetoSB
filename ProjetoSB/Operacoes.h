@@ -36,13 +36,13 @@ static const map<string,ItemOperacao> montaOperacoes () {
 static const map<string,ItemOperacao> listaOperacao = montaOperacoes();
 
 
-static const struct ItemOperacao add = {"add", R, "000000", "010000", "x"};
-static const struct ItemOperacao sub = {"sub", R, "000000", "010010", "x"};
-static const struct ItemOperacao adds = {"add.s", FR, "010001", "000000", "10000"};
-static const struct ItemOperacao addd = {"add.d", FR, "010001", "000001", "10001"};
-static const struct ItemOperacao subs = {"sub.s", FR, "010001", "000000", "10000"};
-static const struct ItemOperacao subd = {"sub.d", FR, "010001", "000001", "10001"};
-static const struct ItemOperacao label = {"x", LABEL, "x", "x", "x"};
+static const struct ItemOperacao add = listaOperacao.find("add")->second;
+static const struct ItemOperacao sub = listaOperacao.find("sub")->second;
+static const struct ItemOperacao adds = listaOperacao.find("adds")->second;
+static const struct ItemOperacao addd = listaOperacao.find("addd")->second;
+static const struct ItemOperacao subs = listaOperacao.find("subs")->second;
+static const struct ItemOperacao subd = listaOperacao.find("subd")->second;
+static const struct ItemOperacao label = listaOperacao.find("label")->second;
 
 class Operacao {
 public:
