@@ -24,8 +24,8 @@ string CodigoIn::pegaLinha() {
 
 	getline (Entrada,line);
 
-	//Evitar mandar linhas que come�am com . e linhas totalmente em branco.
-	while ( ! ((line.find(".")==string::npos) && (line.size() != 0)) ){
+	//Evitar mandar linhas totalmente em branco.
+	while ( ! (line.size() != 0) ){
 		//Tenta pegar outra linha caso nao tenha chegado ao fim do arquivo.
 		if (!Entrada.eof()) getline (Entrada,line);
 		//Caso chegue ao fim do arquivo retorna o identificador de fim de arquivo.
