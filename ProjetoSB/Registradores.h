@@ -14,10 +14,40 @@
 #define _REGISTRADORES_H
 
 #include "ItemRegistrador.h"
+#include <map>
 
-// TODO colocar os codigos binarios dos registradores e terminar de colocar os registradores
+static const map<string,ItemRegistrador> montaRegistradores () {
+	map<string,ItemRegistrador> mapOp;
+	mapOp["$2"] = {"$2", "00010"};
+	mapOp["$4"] = {"$4", "00100"};
+	mapOp["$8"] = {"$8", "01000"};
+	mapOp["$9"] = {"$9", "01001"};
+	mapOp["$16"] = {"$16", "10000"};
+	mapOp["$17"] = {"$17", "10001"};
+	mapOp["$v0"] = {"$v0", "00010"};
+	mapOp["$a0"] = {"$a0", "00100"};
+	mapOp["$t0"] = {"$t0", "01000"};
+	mapOp["$t1"] = {"$t1", "01001"};
+	mapOp["$s0"] = {"$s0", "10000"};
+	mapOp["$s1"] = {"$s1", "10001"};
+	return mapOp;
+}
 
-static const struct ItemRegistrador s0 = {"$s0", "00"};
-static const struct ItemRegistrador s1 = {"$s1", "00"};
+static const map<string,ItemRegistrador> listaRegistradores = montaRegistradores();
+
+
+static const struct ItemRegistrador n2 = listaRegistradores.find("$2")->second;
+static const struct ItemRegistrador n4 = listaRegistradores.find("$4")->second;
+static const struct ItemRegistrador n8 = listaRegistradores.find("$8")->second;
+static const struct ItemRegistrador n9 = listaRegistradores.find("$9")->second;
+static const struct ItemRegistrador n16 = listaRegistradores.find("$16")->second;
+static const struct ItemRegistrador n17 = listaRegistradores.find("$17")->second;
+
+static const struct ItemRegistrador v0 = listaRegistradores.find("$v0")->second;
+static const struct ItemRegistrador a0 = listaRegistradores.find("$a0")->second;
+static const struct ItemRegistrador t0 = listaRegistradores.find("$t0")->second;
+static const struct ItemRegistrador t1 = listaRegistradores.find("$t1")->second;
+static const struct ItemRegistrador s0 = listaRegistradores.find("$s0")->second;
+static const struct ItemRegistrador s1 = listaRegistradores.find("$s1")->second;
 
 #endif  //_REGISTRADORES_H
