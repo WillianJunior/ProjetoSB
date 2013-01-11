@@ -11,25 +11,24 @@
 
 
 #include "Operacoes.h"
-#include "ItemOperacao.h"
 
 string OperacaoBinaria::conversaoBinaria() {
 	string saida;
 	switch (operacao.tipo) {
 	case R:
 		saida = operacao.opcode;
-		saida += rs;	// TODO converter para binario
-		saida += rt;	// TODO converter para binario
-		saida += rd;	// TODO converter para binario
+		saida += encontraRegistrador(rs).codigo;
+		saida += encontraRegistrador(rt).codigo;
+		saida += encontraRegistrador(rd).codigo;
 		saida += "000000"; // TODO melhorar para incorporar o shamt
 		saida += operacao.funct;
 		break;
 	case FR:
 		saida = operacao.opcode;
 		saida += operacao.fmt;
-		saida += rs;	// TODO converter para binario
-		saida += rt;	// TODO converter para binario
-		saida += rd;	// TODO converter para binario
+		saida += encontraRegistrador(rs).codigo;
+		saida += encontraRegistrador(rt).codigo;
+		saida += encontraRegistrador(rd).codigo;
 		saida += operacao.funct;
 		break;
 	default:

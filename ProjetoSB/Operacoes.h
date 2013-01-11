@@ -14,6 +14,7 @@
 #define _OPERACOES_H
 
 #include "ItemOperacao.h"
+#include "Registradores.h"
 
 #include <string>
 #include <list>
