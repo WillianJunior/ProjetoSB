@@ -12,6 +12,10 @@
 
 #include "CodigoOut.h"
 
+void CodigoOut::novaLinha(string linha) {
+
+}
+
 string CodigoOut::pegaLinha(int numLinha) {
 
 }

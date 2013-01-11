@@ -16,11 +16,47 @@
 #include "ItemOperacao.h"
 
 #include <string>
+#include <list>
 
 using namespace std;
 
 static const struct ItemOperacao add = {"Add", R, 0};
 static const struct ItemOperacao sub = {"Sub", R, 0};
+static const struct ItemOperacao label = {"", LABEL, 0};
+
+class Operacao {
+public:
+	ItemOperacao tipoOperacao;
+//	virtual list<string> pegaArgumentos();
+};
+
+class OperacaoLabel:Operacao {
+public:
+	list<string> pegaArgumentos();
+private:
+	string label;
+	int linha;
+
+};
+
+class OperacaoUnaria:Operacao {
+public:
+	list<string> pegaArgumentos();
+private:
+	ItemOperacao operacao;
+	string entrada;
+	string saida;
+};
+
+class OperacaoBinaria:Operacao {
+public:
+	list<string> pegaArgumentos();
+private:
+	ItemOperacao operacao;
+	string lhs;
+	string rhs;
+	string saida;
+};
 
 ItemOperacao encontraOperacao(string nomeOperacao);
 

@@ -19,12 +19,13 @@
 
 #include <string>
 #include <list>
+#include "Operacoes.h"
 
 using namespace std;
 
 class Montador {
 public:
-	Montador(int CodigoIn, int CodigoOut);
+	Montador(CodigoIn codigoIn, CodigoOut codigoOut);
 	void monta();
 private:
 	CodigoIn codigoIn;
@@ -34,6 +35,7 @@ private:
 	void primeiraPassagem();
 	void segundaPassagem();
 	list<string> separaTokens(string linha);
+	Operacao pegaPredicado(list<string> tokens);
 	string validaTokens(list<string> listaTokens);
 };
 

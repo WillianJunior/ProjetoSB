@@ -20,6 +20,7 @@ using namespace std;
 
 class CodigoOut {
 public:
+	void novaLinha(string linha);
 	string pegaLinha(int numLinha);
 	void setLinha(int numLinha,string novaLinha);
 	void escreveSaida();
