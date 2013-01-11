@@ -22,7 +22,9 @@ using namespace std;
 struct ItemOperacao {
 	string nome;
 	TipoOperacao tipo;
-	int codigo;
+	string opcode;
+	string funct;
+	string fmt;
 };
 
 #endif  //_ITEMOPERACAO_H

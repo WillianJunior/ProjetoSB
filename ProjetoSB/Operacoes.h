@@ -20,42 +20,45 @@
 
 using namespace std;
 
-static const struct ItemOperacao add = {"Add", R, 0};
-static const struct ItemOperacao sub = {"Sub", R, 0};
-static const struct ItemOperacao label = {"", LABEL, 0};
+static const struct ItemOperacao add = {"add", R, "000000", "010000", "x"};
+static const struct ItemOperacao sub = {"sub", R, "000000", "010010", "x"};
+static const struct ItemOperacao adds = {"add.s", FR, "010001", "000000", "10000"};
+static const struct ItemOperacao addd = {"add.d", FR, "010001", "000001", "10001"};
+static const struct ItemOperacao subs = {"add.s", FR, "010001", "000000", "10000"};
+static const struct ItemOperacao subd = {"add.s", FR, "010001", "000001", "10001"};
+static const struct ItemOperacao label = {"x", LABEL, "x", "x", "x"};
 
 class Operacao {
 public:
 	ItemOperacao tipoOperacao;
-//	virtual list<string> pegaArgumentos();
+	virtual ~Operacao() {}
+	virtual string conversaoBinaria() {return NULL;};
 };
 
 class OperacaoLabel:Operacao {
 public:
-	list<string> pegaArgumentos();
+	string conversaoBinaria();
 private:
+	Operacao operacao;
 	string label;
-	int linha;
-
+	string linha;
 };
 
-class OperacaoUnaria:Operacao {
+class OperacaoJump:Operacao {
 public:
-	list<string> pegaArgumentos();
+	string conversaoBinaria();
 private:
-	ItemOperacao operacao;
-	string entrada;
-	string saida;
+	string linha;
 };
 
 class OperacaoBinaria:Operacao {
 public:
-	list<string> pegaArgumentos();
+	string conversaoBinaria();
 private:
 	ItemOperacao operacao;
-	string lhs;
-	string rhs;
-	string saida;
+	string rs;
+	string rt;
+	string rd;
 };
 
 ItemOperacao encontraOperacao(string nomeOperacao);

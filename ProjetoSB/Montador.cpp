@@ -14,7 +14,7 @@
 
 
 Montador::Montador(CodigoIn *codigoIn, CodigoOut *codigoOut) {
-	this->codigoIn = codigoIn;   //porque não pode fazer esta atribuição?
+	this->codigoIn = codigoIn;
 	this->codigoOut = codigoOut;
 }
 

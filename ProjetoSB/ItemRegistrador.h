@@ -20,7 +20,7 @@ using namespace std;
 
 struct ItemRegistrador {
 	string nome;
-	int codigo;
+	string codigo;
 };
 
 #endif  //_ITEMREGISTRADOR_H

@@ -16,7 +16,7 @@
 
 struct ItemLabel {
 	string label;
-	int endereco;
+	string endereco;
 };
 
 #endif  //_ITEMLABEL_H

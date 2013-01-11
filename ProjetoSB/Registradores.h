@@ -15,7 +15,9 @@
 
 #include "ItemRegistrador.h"
 
-static const struct ItemRegistrador s0 = {"$s0", 0};
-static const struct ItemRegistrador s1 = {"$s1", 0};
+// TODO colocar os codigos binarios dos registradores e terminar de colocar os registradores
+
+static const struct ItemRegistrador s0 = {"$s0", "00"};
+static const struct ItemRegistrador s1 = {"$s1", "00"};
 
 #endif  //_REGISTRADORES_H

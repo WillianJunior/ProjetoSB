@@ -13,7 +13,30 @@
 #include "Operacoes.h"
 #include "ItemOperacao.h"
 
-ItemOperacao encontraOperacao(string nomeOperacao) {
+string OperacaoLabel::conversaoBinaria() {
+	// TODO conversão igual à da operação binaria
+}
 
+string OperacaoBinaria::conversaoBinaria() {
+	string saida;
+	switch (operacao.tipo) {
+	case R:
+		break;
+	case FR:
+		saida = operacao.opcode;
+		saida += operacao.fmt;
+		saida += rs;	// TODO converter para binario
+		saida += rt;	// TODO converter para binario
+		saida += rd;	// TODO converter para binario
+		saida += operacao.funct;
+		break;
+	default:
+		throw "tipo de operação não é binaria!";
+	}
+	return saida;
+}
+
+ItemOperacao encontraOperacao(string nomeOperacao) {
+	// TODO dada uma string de uma operação "add" retorna ItemOperacao add
 }
 
