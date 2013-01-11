@@ -19,6 +19,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <iterator>
 
 using namespace std;
 
@@ -63,13 +64,14 @@ private:
 
 class OperacaoJump:Operacao {
 public:
-	string conversaoBinaria();
+	virtual string conversaoBinaria();
 private:
 	string linha;
 };
 
 class OperacaoBinaria:Operacao {
 public:
+	OperacaoBinaria (list<string> tokens);
 	string conversaoBinaria();
 private:
 	ItemOperacao operacao;

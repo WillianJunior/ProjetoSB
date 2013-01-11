@@ -12,6 +12,17 @@
 
 #include "Operacoes.h"
 
+OperacaoBinaria::OperacaoBinaria (list<string> tokens) {
+	if((operacao = encontraOperacao(tokens.front())).tipo != label.tipo) {
+		tokens.pop_front();
+		rd = tokens.front();
+		tokens.pop_front();
+		rs = tokens.front();
+		tokens.pop_front();
+		rt = tokens.front();
+	}
+}
+
 string OperacaoBinaria::conversaoBinaria() {
 	string saida;
 	switch (operacao.tipo) {
@@ -38,6 +49,7 @@ string OperacaoBinaria::conversaoBinaria() {
 }
 
 ItemOperacao encontraOperacao(string nomeOperacao) {
-	return listaOperacao.find(nomeOperacao)->second;
+	map<string,ItemOperacao>::const_iterator temp = listaOperacao.find(nomeOperacao);
+	return temp != listaOperacao.end() ? temp->second : label;
 }
 
