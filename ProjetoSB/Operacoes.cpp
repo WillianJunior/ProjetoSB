@@ -21,6 +21,12 @@ string OperacaoBinaria::conversaoBinaria() {
 	string saida;
 	switch (operacao.tipo) {
 	case R:
+		saida = operacao.opcode;
+		saida += rs;	// TODO converter para binario
+		saida += rt;	// TODO converter para binario
+		saida += rd;	// TODO converter para binario
+		saida += "000000"; // TODO melhorar para incorporar o shamt
+		saida += operacao.funct;
 		break;
 	case FR:
 		saida = operacao.opcode;
@@ -38,5 +44,6 @@ string OperacaoBinaria::conversaoBinaria() {
 
 ItemOperacao encontraOperacao(string nomeOperacao) {
 	// TODO dada uma string de uma operação "add" retorna ItemOperacao add
+
 }
 
