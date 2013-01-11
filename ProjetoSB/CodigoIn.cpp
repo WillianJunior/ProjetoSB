@@ -12,7 +12,28 @@
 
 #include "CodigoIn.h"
 
-string CodigoIn::pegaLinha() {
 
+string CodigoIn::pegaLinha() {
+	string line;
+
+	while ( Entrada.good() )
+	    {
+	      getline (Entrada,line);
+	      cout << line << endl;
+	    }
+	    Entrada.close();
+
+
+	return "teste";
 }
 
+
+void CodigoIn::abreArquivo(){
+
+	Entrada.open("entrada.s", ios::in);
+	if(!Entrada.is_open())
+		cout << "Problema ao abrir o arquivo de entrada!" << endl;
+	else cout << "Arquivo aberto com sucesso!" << endl;
+
+
+}

@@ -12,6 +12,8 @@
 #ifndef _CODIGOIN_H
 #define _CODIGOIN_H
 
+#include <iostream>
+#include <fstream>
 #include <string>
 
 using namespace std;
@@ -19,8 +21,15 @@ using namespace std;
 class CodigoIn {
 public:
 	string pegaLinha();
+	CodigoIn(){
+		this->abreArquivo();
+	};
+
 private:
 	string url;
+	fstream Entrada;
+	void abreArquivo();
+
 };
 
 #endif  //_CODIGOIN_H
