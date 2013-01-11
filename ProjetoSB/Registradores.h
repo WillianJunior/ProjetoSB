@@ -50,4 +50,6 @@ static const struct ItemRegistrador t1 = listaRegistradores.find("$t1")->second;
 static const struct ItemRegistrador s0 = listaRegistradores.find("$s0")->second;
 static const struct ItemRegistrador s1 = listaRegistradores.find("$s1")->second;
 
+ItemRegistrador encontraRegistrador(string nomeRegistrador) {return listaRegistradores.find(nomeRegistrador)->second;}
+
 #endif  //_REGISTRADORES_H
