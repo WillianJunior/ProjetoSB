@@ -13,7 +13,7 @@
 #include "Montador.h"
 
 Montador::Montador(CodigoIn codigoIn, CodigoOut codigoOut) {
-	this->codigoIn = codigoIn;
+//	this->codigoIn = codigoIn;   porque não pode fazer esta atribuição?
 	this->codigoOut = codigoOut;
 }
 
@@ -33,24 +33,6 @@ void Montador::primeiraPassagem() {
 
 		// verifica o tipo de predicado
 		predicado = pegaPredicado(tokens);
-
-		switch (predicado.tipoOperacao.tipo) {
-		case R:
-//			linha = predicado.pegaArgumentos();
-			codigoOut.novaLinha(linha);
-			break;
-		case I:
-			break;
-		case J:
-			break;
-		case LABEL:
-			break;
-		case FR:
-			break;
-		default:
-			throw "predicado com operação não implementada!";
-		}
-
 	}
 }
 

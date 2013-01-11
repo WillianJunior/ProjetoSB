@@ -14,7 +14,7 @@
 #define _ITEMLABEL_H
 
 
-typedef struct ItemLabel {
+struct ItemLabel {
 	string label;
 	int endereco;
 };

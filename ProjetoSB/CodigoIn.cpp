@@ -24,7 +24,7 @@ string CodigoIn::pegaLinha() {
 
 	getline (Entrada,line);
 
-	//Evitar mandar linhas que comeam com . e linhas totalmente em branco.
+	//Evitar mandar linhas que comeï¿½am com . e linhas totalmente em branco.
 	while ( ! ((line.find(".")==string::npos) && (line.size() != 0)) ){
 		//Tenta pegar outra linha caso nao tenha chegado ao fim do arquivo.
 		if (!Entrada.eof()) getline (Entrada,line);
@@ -38,7 +38,7 @@ string CodigoIn::pegaLinha() {
 	    {
 	      getline (Entrada,line);
 	      numero_da_linha++;
-	      //Evitar mandar linhas que comeam com . e linhas totalmente em branco.
+	      //Evitar mandar linhas que comeï¿½am com . e linhas totalmente em branco.
 	      if ( (line.find(".")==string::npos) && (line.size() != 0))
 
 	      cout << line.size() <<" "<< line << endl;
