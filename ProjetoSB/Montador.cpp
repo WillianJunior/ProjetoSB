@@ -74,7 +74,19 @@ list<string> Montador::separaTokens(string linha) {
 }
 
 Operacao Montador::pegaPredicado(list<string> tokens) {
+	ItemOperacao op = encontraOperacao(tokens.front());
 
+	switch (op.tipo) {
+	case R:
+		return OperacaoBinaria(tokens);
+	case I:
+	case J:
+	case FR:
+		return OperacaoBinaria(tokens);
+	case LABEL:
+	default:
+		throw runtime_error("operação não identificada");
+	}
 }
 
 string Montador::validaTokens(list<string> listaTokens) {

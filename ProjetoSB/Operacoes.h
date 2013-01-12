@@ -51,12 +51,13 @@ static const struct ItemOperacao label = listaOperacao.find("label")->second;
 
 class Operacao {
 public:
-	ItemOperacao tipoOperacao;
 	virtual ~Operacao() {}
+protected:
+	ItemOperacao tipoOperacao;
 	virtual string conversaoBinaria() {return NULL;};
 };
 
-class OperacaoLabel:Operacao {
+class OperacaoLabel:public Operacao {
 public:
 	string conversaoBinaria();
 private:
@@ -65,14 +66,14 @@ private:
 	string linha;
 };
 
-class OperacaoJump:Operacao {
+class OperacaoJump:public Operacao {
 public:
 	virtual string conversaoBinaria();
 private:
 	string linha;
 };
 
-class OperacaoBinaria:Operacao {
+class OperacaoBinaria:public Operacao {
 public:
 	OperacaoBinaria (list<string> tokens);
 	string conversaoBinaria();
