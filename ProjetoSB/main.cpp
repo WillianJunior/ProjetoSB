@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include "Registradores.h"
+#include "Operacoes.h"
 #include "CodigoIn.h"
 #include "Montador.h"
 
@@ -13,6 +14,19 @@ using namespace std;
 
 int main () {
 
+	list<string> tokens(1,"add");
+//	tokens.push_front("add");
+	tokens.push_back("$s0");
+	tokens.push_back("$s1");
+	tokens.push_back("$t1");
+
+	OperacaoBinaria opBin(tokens);
+	try {
+		cout << opBin.conversaoBinaria() << endl;
+	}
+	catch (runtime_error* e) {
+		cout << "Exception!! " << e->what() << endl;
+	}
 	cout << "hello" << endl;// << s0.nome << endl;
 
 	CodigoIn codIn("teste");
