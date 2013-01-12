@@ -31,22 +31,22 @@ void Montador::primeiraPassagem() {
 	Operacao predicado;
 
 	//TODO APAGARRRRRRRRRRRRRRRRRRRRRRRR
-//	codigoIn = CodigoIn();
+	//	codigoIn = CodigoIn();
 
 	while(!(linha = codigoIn->pegaLinha()).empty()) {
 
-			//Procura o fim de um label.
-			posicao_fim_label = linha.find(":");
+		//Procura o fim de um label.
+		posicao_fim_label = linha.find(":");
 
-			//Caso  tenha label na string.
-			if (posicao_fim_label != string::npos){
+		//Caso  tenha label na string.
+		if (posicao_fim_label != string::npos){
 
-				label = linha.substr(0,posicao_fim_label);
-				tokens.push_front(label);
-				linha = linha.substr(posicao_fim_label, (linha.size()-posicao_fim_label) );
-				cout << "LABEL:" << label << endl;
+			label = linha.substr(0,posicao_fim_label);
+			tokens.push_front(label);
+			linha = linha.substr(posicao_fim_label, (linha.size()-posicao_fim_label) );
+			cout << "LABEL:" << label << endl;
 
-			}
+		}
 
 		cout << linha << endl;
 
@@ -64,16 +64,13 @@ void Montador::segundaPassagem() {
 
 list<string> Montador::separaTokens(string linha) {
 
-
+	istringstream linhaStream(linha);
 	list<string> tokens;
+	copy(istream_iterator<string>(linhaStream),
+			istream_iterator<string>(),
+			back_inserter<list<string> >(tokens));
 
-
-
-
-
-	tokens.push_back(linha);
-	tokens.push_back("FIM");
-
+	return tokens;
 }
 
 Operacao Montador::pegaPredicado(list<string> tokens) {

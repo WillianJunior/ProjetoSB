@@ -19,6 +19,8 @@
 
 #include <string>
 #include <list>
+#include <iostream>
+
 #include "Operacoes.h"
 
 using namespace std;
