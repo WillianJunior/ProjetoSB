@@ -31,9 +31,15 @@ OperacaoBinaria::OperacaoBinaria (list<string> tokens) {
 }
 
 void OperacaoBinaria::montaRegistradoresR(string& saida) {
-	saida += encontraRegistrador(rs).codigo;
-	saida += encontraRegistrador(rt).codigo;
-	saida += encontraRegistrador(rd).codigo;
+	ItemRegistrador irs, irt, ird;
+	if ((irs = encontraRegistrador(rs)).codigo.compare(none.codigo)
+			|| (irt = encontraRegistrador(rt)).codigo.compare(none.codigo)
+			|| (ird = encontraRegistrador(rd)).codigo.compare(none.codigo))
+		throw runtime_error("registradores inexistentes");
+
+	saida += irs.codigo;
+	saida += irt.codigo;
+	saida += ird.codigo;
 }
 
 string OperacaoBinaria::conversaoBinaria() {
