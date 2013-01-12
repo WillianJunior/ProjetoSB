@@ -43,18 +43,21 @@ void Montador::primeiraPassagem() {
 
 			label = linha.substr(0,posicao_fim_label);
 			tokens.push_front(label);
-			linha = linha.substr(posicao_fim_label, (linha.size()-posicao_fim_label) );
-			cout << "LABEL:" << label << endl;
+			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label) );
+			cout << "LABEL - " << label << endl;
 
 		}
 
 		cout << linha << endl;
+		if(!linha.empty()){
+			// pega uma lista de tokens
+			tokens = separaTokens(linha);
 
-		// pega uma lista de tokens
-		tokens = separaTokens(linha);
+			// verifica o tipo de predicado
+			predicado = pegaPredicado(tokens);
 
-		// verifica o tipo de predicado
-		predicado = pegaPredicado(tokens);
+		}
+
 	}
 }
 
@@ -69,6 +72,13 @@ list<string> Montador::separaTokens(string linha) {
 	copy(istream_iterator<string>(linhaStream),
 			istream_iterator<string>(),
 			back_inserter<list<string> >(tokens));
+
+
+	list<string>::iterator i;
+		for( i = tokens.begin(); i != tokens.end(); ++i)
+			cout << *i << " - ";
+		cout << endl;
+
 
 	return tokens;
 }
