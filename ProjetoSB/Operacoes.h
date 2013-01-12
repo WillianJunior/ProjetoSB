@@ -20,13 +20,16 @@
 #include <list>
 #include <map>
 #include <iterator>
+#include <exception>
+#include <sstream>
+#include <stdexcept>
 
 using namespace std;
 
 static const map<string,ItemOperacao> montaOperacoes () {
 	map<string,ItemOperacao> mapOp;
 	mapOp["add"] = {"add", R, "000000", "010000", "x"};
-	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};;
+	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
 	mapOp["adds"] = {"add.s", FR, "010001", "000000", "10000"};
 	mapOp["addd"] = {"add.d", FR, "010001", "000001", "10001"};
 	mapOp["subs"] = {"sub.s", FR, "010001", "000000", "10000"};
@@ -78,6 +81,7 @@ private:
 	string rs;
 	string rt;
 	string rd;
+	void montaRegistradoresR(string& saida);
 };
 
 ItemOperacao encontraOperacao(string nomeOperacao);

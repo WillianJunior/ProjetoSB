@@ -13,7 +13,14 @@
 #include "Operacoes.h"
 
 OperacaoBinaria::OperacaoBinaria (list<string> tokens) {
+	if (tokens.empty())
+		throw "lista de tokens vazia - OperacaoBinaria";
 	if((operacao = encontraOperacao(tokens.front())).tipo != label.tipo) {
+		if (tokens.size() != 4){
+			stringstream num;
+			num << tokens.size();
+			throw runtime_error("operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
+		}
 		tokens.pop_front();
 		rd = tokens.front();
 		tokens.pop_front();
@@ -23,27 +30,29 @@ OperacaoBinaria::OperacaoBinaria (list<string> tokens) {
 	}
 }
 
+void OperacaoBinaria::montaRegistradoresR(string& saida) {
+	saida += encontraRegistrador(rs).codigo;
+	saida += encontraRegistrador(rt).codigo;
+	saida += encontraRegistrador(rd).codigo;
+}
+
 string OperacaoBinaria::conversaoBinaria() {
 	string saida;
 	switch (operacao.tipo) {
 	case R:
 		saida = operacao.opcode;
-		saida += encontraRegistrador(rs).codigo;
-		saida += encontraRegistrador(rt).codigo;
-		saida += encontraRegistrador(rd).codigo;
+		montaRegistradoresR(saida);
 		saida += "000000"; // TODO melhorar para incorporar o shamt
 		saida += operacao.funct;
 		break;
 	case FR:
 		saida = operacao.opcode;
 		saida += operacao.fmt;
-		saida += encontraRegistrador(rs).codigo;
-		saida += encontraRegistrador(rt).codigo;
-		saida += encontraRegistrador(rd).codigo;
+		montaRegistradoresR(saida);
 		saida += operacao.funct;
 		break;
 	default:
-		throw "tipo de operação não é binaria!";
+		throw runtime_error("tipo de operação não é binaria!");
 	}
 	return saida;
 }

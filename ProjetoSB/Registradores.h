@@ -15,6 +15,7 @@
 
 #include "ItemRegistrador.h"
 #include <map>
+#include <iterator>
 
 static const map<string,ItemRegistrador> montaRegistradores () {
 	map<string,ItemRegistrador> mapOp;
@@ -35,7 +36,6 @@ static const map<string,ItemRegistrador> montaRegistradores () {
 
 static const map<string,ItemRegistrador> listaRegistradores = montaRegistradores();
 
-
 static const struct ItemRegistrador n2 = listaRegistradores.find("$2")->second;
 static const struct ItemRegistrador n4 = listaRegistradores.find("$4")->second;
 static const struct ItemRegistrador n8 = listaRegistradores.find("$8")->second;
@@ -50,6 +50,8 @@ static const struct ItemRegistrador t1 = listaRegistradores.find("$t1")->second;
 static const struct ItemRegistrador s0 = listaRegistradores.find("$s0")->second;
 static const struct ItemRegistrador s1 = listaRegistradores.find("$s1")->second;
 
-static const ItemRegistrador encontraRegistrador(string nomeRegistrador) {return listaRegistradores.find(nomeRegistrador)->second;}
+static const struct ItemRegistrador none = {"x", "x"};
+
+ItemRegistrador encontraRegistrador(string nomeRegistrador);
 
 #endif  //_REGISTRADORES_H
