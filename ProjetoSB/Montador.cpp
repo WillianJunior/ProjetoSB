@@ -135,6 +135,9 @@ list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) t
 					num << listaTokens.size();
 					throw runtime_error("Operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
 			}
+			//Checa se os registradores sao validos
+			//TODO
+
 		break;
 		//	case R:
 		//	case I:

@@ -31,6 +31,39 @@ static const map<string,ItemRegistrador> montaRegistradores () {
 	mapOp["$t1"] = {"$t1", "01001"};
 	mapOp["$s0"] = {"$s0", "10000"};
 	mapOp["$s1"] = {"$s1", "10001"};
+//Registradores Float
+	mapOp["$f0"] = {"$f0", "00000"};
+	mapOp["$f1"] = {"$f1", "00001"};
+	mapOp["$f2"] = {"$f2", "00010"};
+	mapOp["$f3"] = {"$f3", "00011"};
+	mapOp["$f4"] = {"$f4", "00100"};
+	mapOp["$f5"] = {"$f5", "00101"};
+	mapOp["$f6"] = {"$f6", "00110"};
+	mapOp["$f7"] = {"$f7", "00111"};
+	mapOp["$f8"] = {"$f8", "01000"};
+	mapOp["$f9"] = {"$f9", "01001"};
+	mapOp["$f10"] = {"$f10", "01010"};
+	mapOp["$f11"] = {"$f11", "01011"};
+	mapOp["$f12"] = {"$f12", "01100"};
+	mapOp["$f13"] = {"$f13", "01101"};
+	mapOp["$f14"] = {"$f14", "01110"};
+	mapOp["$f15"] = {"$f15", "01111"};
+	mapOp["$f16"] = {"$f16", "10000"};
+	mapOp["$f17"] = {"$f17", "10001"};
+	mapOp["$f18"] = {"$f18", "10010"};
+	mapOp["$f19"] = {"$f19", "10011"};
+	mapOp["$f20"] = {"$f20", "10100"};
+	mapOp["$f21"] = {"$f21", "10101"};
+	mapOp["$f22"] = {"$f22", "10110"};
+	mapOp["$f23"] = {"$f23", "10111"};
+	mapOp["$f24"] = {"$f24", "11000"};
+	mapOp["$f25"] = {"$f25", "11001"};
+	mapOp["$f26"] = {"$f26", "11010"};
+	mapOp["$f27"] = {"$f27", "11011"};
+	mapOp["$f28"] = {"$f28", "11100"};
+	mapOp["$f29"] = {"$f29", "11101"};
+	mapOp["$f30"] = {"$f30", "11110"};
+	mapOp["$f31"] = {"$f31", "11111"};
 	return mapOp;
 }
 
@@ -49,6 +82,8 @@ static const struct ItemRegistrador t0 = listaRegistradores.find("$t0")->second;
 static const struct ItemRegistrador t1 = listaRegistradores.find("$t1")->second;
 static const struct ItemRegistrador s0 = listaRegistradores.find("$s0")->second;
 static const struct ItemRegistrador s1 = listaRegistradores.find("$s1")->second;
+
+//TODO Fazer pros Floats.
 
 static const struct ItemRegistrador none = {"x", "x"};
 
