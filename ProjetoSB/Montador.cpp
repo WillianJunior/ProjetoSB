@@ -45,7 +45,7 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 			temp_label.endereco = PLC;
 
 			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label) );
-			cout << "LABEL IDENTIFICADO - " << temp_label.label << endl << "Endereço - " << temp_label.endereco << endl;
+			cout << "LABEL IDENTIFICADO - " << temp_label.label << "Endereço - " << temp_label.endereco << "\n";
 			codigoIn->Label.push_front(temp_label);
 		}
 
