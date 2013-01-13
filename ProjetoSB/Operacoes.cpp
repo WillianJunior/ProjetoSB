@@ -12,25 +12,24 @@
 
 #include "Operacoes.h"
 
-OperacaoBinaria::OperacaoBinaria (list<string> tokens) {
+OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error) {
 	if (tokens.empty())
 		throw "lista de tokens vazia - OperacaoBinaria";
-	if((operacao = encontraOperacao(tokens.front())).tipo != label.tipo) {
-		if (tokens.size() != 4){
-			stringstream num;
-			num << tokens.size();
-			throw runtime_error("operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
-		}
-		tokens.pop_front();
-		rd = tokens.front();
-		tokens.pop_front();
-		rs = tokens.front();
-		tokens.pop_front();
-		rt = tokens.front();
+	if (tokens.size() != 4){
+		stringstream num;
+		num << tokens.size();
+		throw runtime_error("operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
 	}
+	operacao = encontraOperacao(tokens.front());
+	tokens.pop_front();
+	rd = tokens.front();
+	tokens.pop_front();
+	rs = tokens.front();
+	tokens.pop_front();
+	rt = tokens.front();
 }
 
-void OperacaoBinaria::montaRegistradoresR(string& saida) {
+void OperacaoBinaria::montaRegistradoresR(string& saida) throw (runtime_error) {
 	ItemRegistrador irs, irt, ird;
 	if (!(irs = encontraRegistrador(rs)).codigo.compare(none.codigo)
 			|| !(irt = encontraRegistrador(rt)).codigo.compare(none.codigo)
@@ -42,29 +41,29 @@ void OperacaoBinaria::montaRegistradoresR(string& saida) {
 	saida += ird.codigo;
 }
 
-string OperacaoBinaria::conversaoBinaria() {
+string OperacaoBinaria::conversaoBinaria() throw (runtime_error) {
 	string saida;
 	switch (operacao.tipo) {
-	case R:
-		saida = operacao.opcode;
-		montaRegistradoresR(saida);
-		saida += "000000"; // TODO melhorar para incorporar o shamt
-		saida += operacao.funct;
-		break;
 	case FR:
 		saida = operacao.opcode;
 		saida += operacao.fmt;
 		montaRegistradoresR(saida);
 		saida += operacao.funct;
 		break;
+//	case R:
+//		saida = operacao.opcode;
+//		montaRegistradoresR(saida);
+//		saida += "000000"; // TODO melhorar para incorporar o shamt
+//		saida += operacao.funct;
+//		break;
 	default:
-		throw runtime_error("tipo de operação não é binaria!");
+		throw runtime_error("operação não implementada para operação binaria");
 	}
 	return saida;
 }
 
 ItemOperacao encontraOperacao(string nomeOperacao) {
 	map<string,ItemOperacao>::const_iterator temp = listaOperacao.find(nomeOperacao);
-	return temp != listaOperacao.end() ? temp->second : label;
+	return temp != listaOperacao.end() ? temp->second : nullOp;
 }
 

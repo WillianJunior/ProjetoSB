@@ -28,26 +28,28 @@ using namespace std;
 
 static const map<string,ItemOperacao> montaOperacoes () {
 	map<string,ItemOperacao> mapOp;
-	mapOp["add"] = {"add", R, "000000", "010000", "x"};
-	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
+//	mapOp["add"] = {"add", R, "000000", "010000", "x"};
+//	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
 	mapOp["adds"] = {"add.s", FR, "010001", "000000", "10000"};
 	mapOp["addd"] = {"add.d", FR, "010001", "000001", "10001"};
 	mapOp["subs"] = {"sub.s", FR, "010001", "000000", "10000"};
 	mapOp["subd"] = {"sub.d", FR, "010001", "000001", "10001"};
-	mapOp["label"] = {"x", LABEL, "x", "x", "x"};
+	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
+	//	mapOp["label"] = {"x", LABEL, "x", "x", "x"};
 	return mapOp;
 }
 
 static const map<string,ItemOperacao> listaOperacao = montaOperacoes();
 
 
-static const struct ItemOperacao add = listaOperacao.find("add")->second;
-static const struct ItemOperacao sub = listaOperacao.find("sub")->second;
+//static const struct ItemOperacao add = listaOperacao.find("add")->second;
+//static const struct ItemOperacao sub = listaOperacao.find("sub")->second;
 static const struct ItemOperacao adds = listaOperacao.find("adds")->second;
 static const struct ItemOperacao addd = listaOperacao.find("addd")->second;
 static const struct ItemOperacao subs = listaOperacao.find("subs")->second;
 static const struct ItemOperacao subd = listaOperacao.find("subd")->second;
-static const struct ItemOperacao label = listaOperacao.find("label")->second;
+static const struct ItemOperacao nullOp = listaOperacao.find("nullOp")->second;
+//static const struct ItemOperacao label = listaOperacao.find("label")->second;
 
 class Operacao {
 public:
@@ -57,33 +59,33 @@ protected:
 	virtual string conversaoBinaria() {return NULL;};
 };
 
-class OperacaoLabel:public Operacao {
-public:
-	string conversaoBinaria();
-private:
-	Operacao operacao;
-	string label;
-	string linha;
-};
-
-class OperacaoJump:public Operacao {
-public:
-	virtual string conversaoBinaria();
-private:
-	string linha;
-};
-
 class OperacaoBinaria:public Operacao {
 public:
-	OperacaoBinaria (list<string> tokens);
-	string conversaoBinaria();
+	OperacaoBinaria (list<string> tokens) throw (runtime_error);
+	string conversaoBinaria() throw (runtime_error);
 private:
 	ItemOperacao operacao;
 	string rs;
 	string rt;
 	string rd;
-	void montaRegistradoresR(string& saida);
+	void montaRegistradoresR(string& saida) throw (runtime_error);
 };
+
+//class OperacaoLabel:public Operacao {
+//public:
+//	string conversaoBinaria();
+//private:
+//	Operacao operacao;
+//	string label;
+//	string linha;
+//};
+
+//class OperacaoJump:public Operacao {
+//public:
+//	virtual string conversaoBinaria();
+//private:
+//	string linha;
+//};
 
 ItemOperacao encontraOperacao(string nomeOperacao);
 

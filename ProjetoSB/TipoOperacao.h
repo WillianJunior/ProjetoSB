@@ -15,10 +15,11 @@
 
 enum TipoOperacao {
 	R,
-	I,
-	J,
 	FR,
-	LABEL
+	NULLOP,
+//	I,
+//	J,
+//	LABEL
 };
 
 #endif  //_TIPOOPERACAO_H

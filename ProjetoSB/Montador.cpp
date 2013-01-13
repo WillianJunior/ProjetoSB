@@ -18,12 +18,12 @@ Montador::Montador(CodigoIn *codigoIn, CodigoOut *codigoOut) {
 	this->codigoOut = codigoOut;
 }
 
-void Montador::monta() {
+void Montador::monta() throw (runtime_error) {
 	primeiraPassagem();
 	segundaPassagem();
 }
 
-void Montador::primeiraPassagem() {
+void Montador::primeiraPassagem() throw (runtime_error) {
 	string linha;
 	list<string> tokens;
 	string label;
@@ -61,7 +61,7 @@ void Montador::primeiraPassagem() {
 	}
 }
 
-void Montador::segundaPassagem() {
+void Montador::segundaPassagem() throw (runtime_error) {
 
 }
 
@@ -83,17 +83,17 @@ list<string> Montador::separaTokens(string linha) {
 	return tokens;
 }
 
-Operacao Montador::pegaPredicado(list<string> tokens) {
+Operacao Montador::pegaPredicado(list<string> tokens) throw (runtime_error) {
 	ItemOperacao op = encontraOperacao(tokens.front());
 
 	switch (op.tipo) {
-	case R:
-		return OperacaoBinaria(tokens);
-	case I:
-	case J:
 	case FR:
 		return OperacaoBinaria(tokens);
-	case LABEL:
+//	case R:
+//		return OperacaoBinaria(tokens);
+//	case I:
+//	case J:
+//	case LABEL:
 	default:
 		throw runtime_error("operação não identificada");
 	}

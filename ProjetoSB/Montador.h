@@ -28,16 +28,16 @@ using namespace std;
 class Montador {
 public:
 	Montador(CodigoIn *codigoIn, CodigoOut *codigoOut);
-	void monta();
+	void monta() throw (runtime_error);
 private:
 	CodigoIn *codigoIn;
 	CodigoOut *codigoOut;
 	list<ItemLabel> listaLabels;
 	list<ItemLabel> listaDependencias;
-	void primeiraPassagem();
-	void segundaPassagem();
+	void primeiraPassagem() throw (runtime_error);
+	void segundaPassagem() throw (runtime_error);
 	list<string> separaTokens(string linha);
-	Operacao pegaPredicado(list<string> tokens);
+	Operacao pegaPredicado(list<string> tokens) throw (runtime_error);
 	string validaTokens(list<string> listaTokens);
 };
 

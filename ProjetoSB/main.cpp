@@ -14,7 +14,8 @@ using namespace std;
 
 int main () {
 
-	list<string> tokens(1,"add");
+	cout << "hello" << endl;// << s0.nome << endl;
+	list<string> tokens(1,"adds");
 //	tokens.push_front("add");
 	tokens.push_back("$s0");
 	tokens.push_back("$s1");
@@ -27,7 +28,6 @@ int main () {
 	catch (runtime_error* e) {
 		cout << "Exception!! " << e->what() << endl;
 	}
-	cout << "hello" << endl;// << s0.nome << endl;
 
 	CodigoIn codIn("teste");
 	CodigoOut codOut("teste2");
