@@ -53,6 +53,8 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 			// pega uma lista de tokens
 			tokens = separaTokens(linha);
 
+
+
 			// verifica o tipo de predicado
 			predicado = pegaPredicado(tokens);
 
@@ -83,13 +85,16 @@ list<string> Montador::separaTokens(string linha) {
 
 	list<string> tokensSaida(tokens.begin(),tokens.end());
 	ItemOperacao op = encontraOperacao(tokens[0]);
+
+	list<string>::const_iterator i;
+	for( i = tokensSaida.begin(); i != tokensSaida.end(); ++i)
+						cout << *i << " - ";
+					cout << endl;
+
+
 	validaTokens(tokensSaida, numVirgulas);
 
 
-//	list<string>::iterator i;
-//	for( i = tokens.begin(); i != tokens.end(); ++i)
-//		cout << *i << " - ";
-//	cout << endl;
 
 
 	return tokensSaida;
