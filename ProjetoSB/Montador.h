@@ -19,6 +19,7 @@
 
 #include <string>
 #include <list>
+#include <vector>
 #include <iostream>
 
 #include "Operacoes.h"
@@ -38,7 +39,7 @@ private:
 	void segundaPassagem() throw (runtime_error);
 	list<string> separaTokens(string linha);
 	Operacao pegaPredicado(list<string> tokens) throw (runtime_error);
-	string validaTokens(list<string> listaTokens);
+	string validaTokens(list<string> listaTokens, int numVirgulas);
 };
 
 #endif  //_MONTADOR_H

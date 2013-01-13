@@ -67,20 +67,32 @@ void Montador::segundaPassagem() throw (runtime_error) {
 
 list<string> Montador::separaTokens(string linha) {
 
+	// troca as virgulas por espaços em branco
+	int virgula, numVirgulas = 0;
+	while ((virgula = linha.find(',')) != string::npos) {
+		linha.replace(virgula, 1," ");
+		numVirgulas++;
+	}
+
+	// separa por espaço em branco
 	istringstream linhaStream(linha);
-	list<string> tokens;
+	vector<string> tokens;
 	copy(istream_iterator<string>(linhaStream),
-			istream_iterator<string>(),
-			back_inserter<list<string> >(tokens));
+				istream_iterator<string>(),
+				back_inserter<vector<string> >(tokens));
+
+	list<string> tokensSaida(tokens.begin(),tokens.end());
+	ItemOperacao op = encontraOperacao(tokens[0]);
+	validaTokens(tokensSaida, numVirgulas);
 
 
-	list<string>::iterator i;
-		for( i = tokens.begin(); i != tokens.end(); ++i)
-			cout << *i << " - ";
-		cout << endl;
+//	list<string>::iterator i;
+//	for( i = tokens.begin(); i != tokens.end(); ++i)
+//		cout << *i << " - ";
+//	cout << endl;
 
 
-	return tokens;
+	return tokensSaida;
 }
 
 Operacao Montador::pegaPredicado(list<string> tokens) throw (runtime_error) {
@@ -89,17 +101,17 @@ Operacao Montador::pegaPredicado(list<string> tokens) throw (runtime_error) {
 	switch (op.tipo) {
 	case FR:
 		return OperacaoBinaria(tokens);
-//	case R:
-//		return OperacaoBinaria(tokens);
-//	case I:
-//	case J:
-//	case LABEL:
+		//	case R:
+		//		return OperacaoBinaria(tokens);
+		//	case I:
+		//	case J:
+		//	case LABEL:
 	default:
 		throw runtime_error("operação não identificada");
 	}
 }
 
-string Montador::validaTokens(list<string> listaTokens) {
+string Montador::validaTokens(list<string> listaTokens, int numVirgulas) {
 
 }
 
