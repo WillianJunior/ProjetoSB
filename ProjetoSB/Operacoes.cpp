@@ -13,13 +13,7 @@
 #include "Operacoes.h"
 
 OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error) {
-	if (tokens.empty())
-		throw "lista de tokens vazia - OperacaoBinaria";
-	if (tokens.size() != 4){
-		stringstream num;
-		num << tokens.size();
-		throw runtime_error("operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
-	}
+
 	operacao = encontraOperacao(tokens.front());
 	tokens.pop_front();
 	rd = tokens.front();

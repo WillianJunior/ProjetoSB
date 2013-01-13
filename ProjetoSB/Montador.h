@@ -35,6 +35,7 @@ private:
 	CodigoOut *codigoOut;
 	list<ItemLabel> listaLabels;
 	list<ItemLabel> listaDependencias;
+	list<Operacao> listaIntrucoes;
 	void primeiraPassagem() throw (runtime_error);
 	void segundaPassagem() throw (runtime_error);
 	list<string> separaTokens(string linha)throw (runtime_error);

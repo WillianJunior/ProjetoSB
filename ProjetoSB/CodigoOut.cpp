@@ -9,15 +9,17 @@
 //
 //
 
-
 #include "CodigoOut.h"
 
 void CodigoOut::novaLinha(string linha) {
-
+	codigo.push_front(linha);
 }
 
 string CodigoOut::pegaLinha(int numLinha) {
-
+	int i;
+	for(i = 0; i <= numLinha/4;i++)
+		url = CodIn.pegaLinha();
+	return url;
 }
 
 void CodigoOut::setLinha(int numLinha, string novaLinha) {
@@ -25,6 +27,24 @@ void CodigoOut::setLinha(int numLinha, string novaLinha) {
 }
 
 void CodigoOut::escreveSaida() {
+		if (Saida.eof()) {
+				Saida.close();
+			}
+
+		while(!codigo.empty()){
+
+				Saida << codigo.back() << endl;
+				codigo.pop_back();
+			}
+}
+
+void CodigoOut::abreArquivo(){
+
+	Saida.open("saida.s", ios::out);
+	if(!Saida.is_open())
+		cout << "Problema ao abrir o arquivo de saida!" << endl;
+	else cout << "Arquivo aberto com sucesso!" << endl;
+
 
 }
 

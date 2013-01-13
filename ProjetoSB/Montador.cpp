@@ -26,9 +26,11 @@ void Montador::monta() throw (runtime_error) {
 void Montador::primeiraPassagem() throw (runtime_error) {
 	string linha;
 	list<string> tokens;
-	string label;
+	//string label;
 	int posicao_fim_label;
 	Operacao predicado;
+	ItemLabel temp_label;
+	int PLC = 0;
 
 
 	while((linha = codigoIn->pegaLinha()).compare("-FIM-")) {
@@ -39,11 +41,12 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 		//Caso  tenha label na string.
 		if (posicao_fim_label != string::npos){
 
-			label = linha.substr(0,posicao_fim_label);
-			tokens.push_front(label);
-			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label) );
-			cout << "LABEL IDENTIFICADO - " << label << endl;
+			temp_label.label = linha.substr(0,posicao_fim_label);
+			temp_label.endereco = PLC;
 
+			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label) );
+			cout << "LABEL IDENTIFICADO - " << temp_label.label << endl << "Endereço - " << temp_label.endereco << endl;
+			codigoIn->Label.push_front(temp_label);
 		}
 
 		cout << "Instrucao Lida: "<< linha << endl;
@@ -54,9 +57,13 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 			// verifica o tipo de predicado
 			predicado = pegaPredicado(tokens);
 
+			listaIntrucoes.push_back(predicado);
+			PLC += 4;
 		}
 
 	}
+
+	//A lista de instrucoes ja esta montada. Sera usada na segunda passagem.
 }
 
 void Montador::segundaPassagem() throw (runtime_error) {
@@ -110,11 +117,33 @@ Operacao Montador::pegaPredicado(list<string> tokens) throw (runtime_error) {
 		//	case J:
 		//	case LABEL:
 	default:
-		throw runtime_error("operação não identificada");
+		throw runtime_error("Operação não identificada");
 	}
 }
 
 list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (runtime_error) {
+
+	ItemOperacao op = encontraOperacao(listaTokens.front());
+	switch (op.tipo) {
+		case FR:
+			if (numVirgulas != 2)
+				throw runtime_error("Problema no numero de virgulas " + numVirgulas);
+			if (listaTokens.empty())
+					throw runtime_error("Lista de tokens vazia - OperacaoBinaria");
+			if (listaTokens.size() != 4){
+					stringstream num;
+					num << listaTokens.size();
+					throw runtime_error("Operação binaria com numero errado de argumentos, esperava 4 mas tem " + num.str());
+			}
+		break;
+		//	case R:
+		//	case I:
+		//	case J:
+
+		default:
+			throw runtime_error("operação não identificada");
+		}
+
 	return listaTokens;
 }
 

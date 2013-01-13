@@ -13,10 +13,13 @@
 #ifndef _ITEMLABEL_H
 #define _ITEMLABEL_H
 
+#include <string>
+#include <iostream>
 
 struct ItemLabel {
 	string label;
-	string endereco;
+
+	int endereco;
 };
 
 #endif  //_ITEMLABEL_H

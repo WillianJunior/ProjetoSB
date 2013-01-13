@@ -15,20 +15,32 @@
 
 #include <string>
 #include <list>
+#include "CodigoIn.h"
+#include <fstream>
 
 using namespace std;
-
 class CodigoOut {
 public:
-	CodigoOut() {};
-	CodigoOut(string url){this->url = url;};
+	CodigoOut(){
+		this->abreArquivo();
+
+	};
+	CodigoOut(string url){
+		this->url = url;
+		this->abreArquivo();
+	};
 	void novaLinha(string linha);
 	string pegaLinha(int numLinha);
 	void setLinha(int numLinha,string novaLinha);
-	void escreveSaida();
+	void escreveSaida(void);
 private:
+	CodigoIn CodIn;
 	string url;
 	list<string> codigo;
+	fstream Saida;
+
+	void abreArquivo();
 };
+
 
 #endif  //_CODIGOOUT_H

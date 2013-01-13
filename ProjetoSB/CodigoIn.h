@@ -16,11 +16,14 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "ItemLabel.h"
+#include <list>
 
 using namespace std;
 
 class CodigoIn {
 public:
+	list<ItemLabel> Label;
 	string pegaLinha();
 	CodigoIn(string url){this->url = url;this->abreArquivo();};
 	CodigoIn(){ this->abreArquivo();};
