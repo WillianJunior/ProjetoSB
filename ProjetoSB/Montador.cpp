@@ -67,7 +67,7 @@ void Montador::segundaPassagem() throw (runtime_error) {
 
 }
 
-list<string> Montador::separaTokens(string linha) {
+list<string> Montador::separaTokens(string linha)throw (runtime_error) {
 
 	// troca as virgulas por espaços em branco
 	int virgula, numVirgulas = 0;
@@ -92,7 +92,8 @@ list<string> Montador::separaTokens(string linha) {
 					cout << endl;
 
 
-	validaTokens(tokensSaida, numVirgulas);
+	list<string>	tokensSaidaValidado;
+	tokensSaidaValidado = validaTokens(tokensSaida, numVirgulas);
 
 
 
@@ -116,7 +117,7 @@ Operacao Montador::pegaPredicado(list<string> tokens) throw (runtime_error) {
 	}
 }
 
-string Montador::validaTokens(list<string> listaTokens, int numVirgulas) {
-
+list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (runtime_error) {
+	return listaTokens;
 }
 

@@ -15,7 +15,7 @@ using namespace std;
 int main () {
 
 	cout << "hello" << endl;// << s0.nome << endl;
-	list<string> tokens(1,"adds");
+	list<string> tokens(1,"add.s");
 //	tokens.push_front("add");
 	tokens.push_back("$s0");
 	tokens.push_back("$s1");
