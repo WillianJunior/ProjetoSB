@@ -30,10 +30,8 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 	int posicao_fim_label;
 	Operacao predicado;
 
-	//TODO APAGARRRRRRRRRRRRRRRRRRRRRRRR
-	//	codigoIn = CodigoIn();
 
-	while(!(linha = codigoIn->pegaLinha()).empty()) {
+	while((linha = codigoIn->pegaLinha()).compare("-FIM-")) {
 
 		//Procura o fim de um label.
 		posicao_fim_label = linha.find(":");
@@ -44,16 +42,14 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 			label = linha.substr(0,posicao_fim_label);
 			tokens.push_front(label);
 			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label) );
-			cout << "LABEL - " << label << endl;
+			cout << "LABEL IDENTIFICADO - " << label << endl;
 
 		}
 
-		cout << linha << endl;
+		cout << "Instrucao Lida: "<< linha << endl;
 		if(!linha.empty()){
 			// pega uma lista de tokens
 			tokens = separaTokens(linha);
-
-
 
 			// verifica o tipo de predicado
 			predicado = pegaPredicado(tokens);
@@ -87,6 +83,7 @@ list<string> Montador::separaTokens(string linha)throw (runtime_error) {
 	ItemOperacao op = encontraOperacao(tokens[0]);
 
 	list<string>::const_iterator i;
+	cout << "Lista de Tokens Gerada: ";
 	for( i = tokensSaida.begin(); i != tokensSaida.end(); ++i)
 						cout << *i << " - ";
 					cout << endl;
