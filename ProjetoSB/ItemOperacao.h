@@ -25,6 +25,10 @@ struct ItemOperacao {
 	string opcode;
 	string funct;
 	string fmt;
+	string endereco;
+	string rs;
+	string rt;
+	string rd;
 };
 
 #endif  //_ITEMOPERACAO_H

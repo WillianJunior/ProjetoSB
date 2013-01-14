@@ -18,7 +18,7 @@ enum TipoOperacao {
 	FR,
 	NULLOP,
 //	I,
-//	J,
+	J,
 //	LABEL
 };
 

@@ -83,7 +83,38 @@ static const struct ItemRegistrador t1 = listaRegistradores.find("$t1")->second;
 static const struct ItemRegistrador s0 = listaRegistradores.find("$s0")->second;
 static const struct ItemRegistrador s1 = listaRegistradores.find("$s1")->second;
 
-//TODO Fazer pros Floats.
+static const struct ItemRegistrador f0 = listaRegistradores.find("$f0")->second;
+static const struct ItemRegistrador f1 = listaRegistradores.find("$f1")->second;
+static const struct ItemRegistrador f2 = listaRegistradores.find("$f2")->second;
+static const struct ItemRegistrador f3 = listaRegistradores.find("$f3")->second;
+static const struct ItemRegistrador f4 = listaRegistradores.find("$f4")->second;
+static const struct ItemRegistrador f5 = listaRegistradores.find("$f5")->second;
+static const struct ItemRegistrador f6 = listaRegistradores.find("$f6")->second;
+static const struct ItemRegistrador f7 = listaRegistradores.find("$f7")->second;
+static const struct ItemRegistrador f8 = listaRegistradores.find("$f8")->second;
+static const struct ItemRegistrador f9 = listaRegistradores.find("$f9")->second;
+static const struct ItemRegistrador f10 = listaRegistradores.find("$f10")->second;
+static const struct ItemRegistrador f11 = listaRegistradores.find("$f11")->second;
+static const struct ItemRegistrador f12 = listaRegistradores.find("$f12")->second;
+static const struct ItemRegistrador f13 = listaRegistradores.find("$f13")->second;
+static const struct ItemRegistrador f14 = listaRegistradores.find("$f14")->second;
+static const struct ItemRegistrador f15 = listaRegistradores.find("$f15")->second;
+static const struct ItemRegistrador f16 = listaRegistradores.find("$f16")->second;
+static const struct ItemRegistrador f17 = listaRegistradores.find("$f17")->second;
+static const struct ItemRegistrador f18 = listaRegistradores.find("$f18")->second;
+static const struct ItemRegistrador f19 = listaRegistradores.find("$f19")->second;
+static const struct ItemRegistrador f20 = listaRegistradores.find("$f20")->second;
+static const struct ItemRegistrador f21 = listaRegistradores.find("$f21")->second;
+static const struct ItemRegistrador f22 = listaRegistradores.find("$f22")->second;
+static const struct ItemRegistrador f23 = listaRegistradores.find("$f23")->second;
+static const struct ItemRegistrador f24 = listaRegistradores.find("$f24")->second;
+static const struct ItemRegistrador f25 = listaRegistradores.find("$f25")->second;
+static const struct ItemRegistrador f26 = listaRegistradores.find("$f26")->second;
+static const struct ItemRegistrador f27 = listaRegistradores.find("$f27")->second;
+static const struct ItemRegistrador f28 = listaRegistradores.find("$f28")->second;
+static const struct ItemRegistrador f29 = listaRegistradores.find("$f29")->second;
+static const struct ItemRegistrador f30 = listaRegistradores.find("$f30")->second;
+static const struct ItemRegistrador f31 = listaRegistradores.find("$f31")->second;
 
 static const struct ItemRegistrador none = {"x", "x"};
 

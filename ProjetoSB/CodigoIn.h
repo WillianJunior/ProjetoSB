@@ -23,7 +23,6 @@ using namespace std;
 
 class CodigoIn {
 public:
-	list<ItemLabel> Label;
 	string pegaLinha();
 	CodigoIn(string url){this->url = url;this->abreArquivo();};
 	CodigoIn(){ this->abreArquivo();};

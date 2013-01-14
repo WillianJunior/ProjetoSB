@@ -35,9 +35,10 @@ private:
 	CodigoOut *codigoOut;
 	list<ItemLabel> listaLabels;
 	list<ItemLabel> listaDependencias;
-	list<Operacao> listaIntrucoes;
+	list<Operacao> listaInstrucoes;
 	void primeiraPassagem() throw (runtime_error);
 	void segundaPassagem() throw (runtime_error);
+	Operacao atualizar_endereco(int endereco);
 	list<string> separaTokens(string linha)throw (runtime_error);
 	Operacao pegaPredicado(list<string> tokens) throw (runtime_error);
 	list<string> validaTokens(list<string> listaTokens, int numVirgulas)throw (runtime_error);

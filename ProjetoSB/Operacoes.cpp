@@ -16,18 +16,18 @@ OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error) {
 
 	operacao = encontraOperacao(tokens.front());
 	tokens.pop_front();
-	rd = tokens.front();
+	operacao.rd = tokens.front();
 	tokens.pop_front();
-	rs = tokens.front();
+	operacao.rs = tokens.front();
 	tokens.pop_front();
-	rt = tokens.front();
+	operacao.rt = tokens.front();
 }
 
 void OperacaoBinaria::montaRegistradoresR(string& saida) throw (runtime_error) {
 	ItemRegistrador irs, irt, ird;
-	if (!(irs = encontraRegistrador(rs)).codigo.compare(none.codigo)
-			|| !(irt = encontraRegistrador(rt)).codigo.compare(none.codigo)
-			|| !(ird = encontraRegistrador(rd)).codigo.compare(none.codigo))
+	if (!(irs = encontraRegistrador(operacao.rs)).codigo.compare(none.codigo)
+			|| !(irt = encontraRegistrador(operacao.rt)).codigo.compare(none.codigo)
+			|| !(ird = encontraRegistrador(operacao.rd)).codigo.compare(none.codigo))
 		throw runtime_error("registradores inexistentes");
 
 	saida += irs.codigo;
@@ -50,14 +50,61 @@ string OperacaoBinaria::conversaoBinaria() throw (runtime_error) {
 //		saida += "000000"; // TODO melhorar para incorporar o shamt
 //		saida += operacao.funct;
 //		break;
+
 	default:
 		throw runtime_error("operação não implementada para operação binaria");
 	}
 	return saida;
 }
 
+OperacaoJump::OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error) {
+
+	operacao = encontraOperacao(tokens.front());
+	tokens.pop_front();
+	if(Endereco != -1)
+		operacao.endereco = conversaoJump(Endereco);
+	else
+		operacao.endereco = tokens.front();
+}
+
+string OperacaoJump::conversaoJump(int Endereco){
+	string saida;
+
+	saida = conversao_int_binario(Endereco);
+	return saida;
+}
+
+string OperacaoJump::conversao_int_binario(int Endereco){
+
+	int resto = 0;
+	string valor;
+
+	while(Endereco > 0)
+	{
+		resto = Endereco % 2;
+		Endereco /= 2;
+		if(resto == 0) valor.push_back('0');
+		else valor.push_back('1');
+	}
+	while(valor.length()<=26) valor.insert(0,"0");
+	return valor;
+}
+
+bool Operacao::verifica_nome(string nome_operacao){
+	if(operacao.nome == nome_operacao)
+		return true;
+	else
+		return false;
+}
+
+bool Operacao::verifica_label(string label){
+	if(operacao.endereco == label)
+		return true;
+	else
+		return false;
+}
+
 ItemOperacao encontraOperacao(string nomeOperacao) {
 	map<string,ItemOperacao>::const_iterator temp = listaOperacao.find(nomeOperacao);
 	return temp != listaOperacao.end() ? temp->second : nullOp;
 }
-

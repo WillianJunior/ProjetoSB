@@ -35,7 +35,7 @@ static const map<string,ItemOperacao> montaOperacoes () {
 	mapOp["sub.s"] = {"sub.s", FR, "010001", "000000", "10000"};
 	mapOp["sub.d"] = {"sub.d", FR, "010001", "000001", "10001"};
 	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
-	//	mapOp["label"] = {"x", LABEL, "x", "x", "x"};
+	mapOp["j"] = {"j", J, "\0", "\0", "\0"};
 	return mapOp;
 }
 
@@ -48,15 +48,22 @@ static const struct ItemOperacao adds = listaOperacao.find("add.s")->second;
 static const struct ItemOperacao addd = listaOperacao.find("add.d")->second;
 static const struct ItemOperacao subs = listaOperacao.find("sub.s")->second;
 static const struct ItemOperacao subd = listaOperacao.find("sub.d")->second;
+static const struct ItemOperacao j = listaOperacao.find("j")->second;
 static const struct ItemOperacao nullOp = listaOperacao.find("nullOp")->second;
 //static const struct ItemOperacao label = listaOperacao.find("label")->second;
 
 class Operacao {
 public:
 	virtual ~Operacao() {}
+	//Verifica se o nome da operacao e igual ao da entrada
+	bool verifica_nome(string nome_operacao);
+	//Verifica se o label da operacao e igual ao da entrada
+	bool verifica_label(string label);
+
 protected:
-	ItemOperacao tipoOperacao;
+	ItemOperacao operacao;
 	virtual string conversaoBinaria() {return NULL;};
+	virtual string conversaoJump(int Endereco) {return NULL;};
 };
 
 class OperacaoBinaria:public Operacao {
@@ -64,10 +71,6 @@ public:
 	OperacaoBinaria (list<string> tokens) throw (runtime_error);
 	string conversaoBinaria() throw (runtime_error);
 private:
-	ItemOperacao operacao;
-	string rs;
-	string rt;
-	string rd;
 	void montaRegistradoresR(string& saida) throw (runtime_error);
 };
 
@@ -80,12 +83,13 @@ private:
 //	string linha;
 //};
 
-//class OperacaoJump:public Operacao {
-//public:
-//	virtual string conversaoBinaria();
-//private:
-//	string linha;
-//};
+class OperacaoJump:public Operacao {
+public:
+	OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error);
+private:
+	string conversaoJump(int Endereco);
+	string conversao_int_binario(int Endereco);
+};
 
 ItemOperacao encontraOperacao(string nomeOperacao);
 
