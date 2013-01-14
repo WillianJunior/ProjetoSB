@@ -12,44 +12,32 @@
 
 using namespace std;
 
-int main () {
-
-	cout << "hello" << endl;// << s0.nome << endl;
-	list<string> tokens(1,"add.s");
-//	tokens.push_front("add");
-	tokens.push_back("$s0");
-	tokens.push_back("$s1");
-	tokens.push_back("$t1");
-
-	OperacaoBinaria opBin(tokens);
-	try {
-		cout << opBin.conversaoBinaria() << endl;
+void mostraHelp() {
+	ifstream streamLeiame("LEIAME");
+	while (streamLeiame.good()) {
+		cout << (char) (streamLeiame.get());
 	}
-	catch (runtime_error* e) {
-		cout << "Exception!! " << e->what() << endl;
+	streamLeiame.close();
+	cout << endl;
+}
+
+int main (int argc, char** argv) {
+
+	if (string("-h").compare(argv[1]) == 0 || argc != 3 ) {
+		mostraHelp();
+		return 0;
 	}
 
-	CodigoIn codIn("teste");
-	CodigoOut codOut("teste2");
+	// cria os objetos de entrada e saida de arquivo
+	CodigoIn codigoIn(argv[1]);
+	CodigoOut codigoOut(argv[2]);
 
-	string linhaAtual;
-	int contadorInstrucao = 0;
+	// monta o codigo assembly
+	Montador montador(&codigoIn, &codigoOut);
+	montador.monta();
 
-	Montador* montador = new Montador (&codIn, &codOut);
-	montador->monta();
-/*
-	linhaAtual = codIn.pegaLinha();
-	while(linhaAtual != "-FIM-"){
-		cout << contadorInstrucao << " " <<linhaAtual << endl;
+	// escreve no arquivo a saida
+	codigoOut.escreveSaida();
 
-		//Preparar as vari�veis para a pr�xima itera��o.
-		contadorInstrucao += 4;
-		linhaAtual = codIn.pegaLinha();
-	}
-*/
-
-
-
-	cout << "bye" << endl;
-
+	return 0;
 }
