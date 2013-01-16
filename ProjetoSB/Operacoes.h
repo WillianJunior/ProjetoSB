@@ -56,9 +56,9 @@ class Operacao {
 public:
 	virtual ~Operacao() {}
 	//Verifica se o nome da operacao e igual ao da entrada
-	bool verifica_nome(string nome_operacao);
+	bool verificaNome(string nomeOperacao);
 	//Verifica se o label da operacao e igual ao da entrada
-	bool verifica_label(string label);
+	bool verificaLabel(string label);
 
 protected:
 	ItemOperacao operacao;
@@ -88,7 +88,7 @@ public:
 	OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error);
 private:
 	string conversaoJump(int Endereco);
-	string conversao_int_binario(int Endereco);
+	string conversaoIntBinario(int Endereco);
 };
 
 ItemOperacao encontraOperacao(string nomeOperacao);

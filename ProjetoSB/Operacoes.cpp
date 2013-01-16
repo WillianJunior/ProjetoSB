@@ -70,11 +70,11 @@ OperacaoJump::OperacaoJump (list<string> tokens, int Endereco) throw (runtime_er
 string OperacaoJump::conversaoJump(int Endereco){
 	string saida;
 
-	saida = conversao_int_binario(Endereco);
+	saida = conversaoIntBinario(Endereco);
 	return saida;
 }
 
-string OperacaoJump::conversao_int_binario(int Endereco){
+string OperacaoJump::conversaoIntBinario(int Endereco){
 
 	int resto = 0;
 	string valor;
@@ -90,14 +90,14 @@ string OperacaoJump::conversao_int_binario(int Endereco){
 	return valor;
 }
 
-bool Operacao::verifica_nome(string nome_operacao){
-	if(operacao.nome == nome_operacao)
+bool Operacao::verificaNome(string nomeOperacao){
+	if(operacao.nome == nomeOperacao)
 		return true;
 	else
 		return false;
 }
 
-bool Operacao::verifica_label(string label){
+bool Operacao::verificaLabel(string label){
 	if(operacao.endereco == label)
 		return true;
 	else

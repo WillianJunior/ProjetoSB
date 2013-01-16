@@ -23,7 +23,7 @@ void mostraHelp() {
 
 int main (int argc, char** argv) {
 
-	if (string("-h").compare(argv[1]) == 0 || argc != 3 ) {
+	if (argc != 3 || string("-h").compare(argv[1]) == 0) {
 		mostraHelp();
 		return 0;
 	}
@@ -37,6 +37,7 @@ int main (int argc, char** argv) {
 	montador.monta();
 
 	// escreve no arquivo a saida
+	codigoOut.mostraSaida();
 	codigoOut.escreveSaida();
 
 	return 0;

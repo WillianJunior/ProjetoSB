@@ -33,6 +33,7 @@ public:
 	string pegaLinha(int numLinha);
 	void setLinha(int numLinha,string novaLinha);
 	void escreveSaida(void);
+	void mostraSaida ();
 private:
 	CodigoIn CodIn;
 	string url;

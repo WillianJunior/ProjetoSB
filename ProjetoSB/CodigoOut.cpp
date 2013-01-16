@@ -27,15 +27,23 @@ void CodigoOut::setLinha(int numLinha, string novaLinha) {
 }
 
 void CodigoOut::escreveSaida() {
-		if (Saida.eof()) {
-				Saida.close();
-			}
+	if (Saida.eof()) {
+		Saida.close();
+	}
 
-		while(!codigo.empty()){
+	while(!codigo.empty()){
 
-				Saida << codigo.back() << endl;
-				codigo.pop_back();
-			}
+		Saida << codigo.back() << endl;
+		codigo.pop_back();
+	}
+}
+
+void CodigoOut::mostraSaida () {
+	list<string>::const_iterator i;
+	cout << "Lista de instruções decodificadas: ";
+	for( i = codigo.begin(); i != codigo.end(); ++i)
+		cout << *i << " - " << *i << endl;
+	cout << endl;
 }
 
 void CodigoOut::abreArquivo(){
