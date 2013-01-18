@@ -76,28 +76,32 @@ void Montador::segundaPassagem() throw (runtime_error) {
 	//Contador de posicoes
 	list<Operacao*>::iterator i;
 	list<ItemLabel>::iterator j;
-
-
-
+	stringstream enderecoString;
+	bool tipoj;
 
 	for(i = listaInstrucoes.begin(); i != listaInstrucoes.end(); i++){
 		//Procura o endereco do label na lista de labels
+		tipoj = false;
 		if((*i)->verificaNome("j")){
 			for(j = listaLabels.begin(); j!= listaLabels.end(); j++){
 				if((*i)->verificaLabel(j->label)){
-					stringstream enderecoString;
 					enderecoString << j->endereco;
 					(*i)->setEndereco(enderecoString.str());
+					tipoj = true;
+					break;
 				}
 			}
+			if (!tipoj)
+				throw runtime_error("label não encontrado!");
 		}
 	}
-	cout << "Willian boiola" << endl;
-		list<Operacao*>::iterator it;
-		it = listaInstrucoes.begin();
-		for (;it != listaInstrucoes.end();it++) {
-			(*it)->prettyPrinter();
-		}
+	list<Operacao*>::iterator it;
+	it = listaInstrucoes.begin();
+	for (;it != listaInstrucoes.end();it++) {
+		codigoOut->novaLinha((*it)->conversaoBinaria());
+		(*it)->prettyPrinter();
+	}
+
 }
 
 

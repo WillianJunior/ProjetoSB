@@ -122,6 +122,10 @@ void OperacaoJump::prettyPrinter() {
 	cout << operacao.nome << " " << endereco << endl;
 }
 
+string OperacaoJump::conversaoBinaria() throw (runtime_error) {
+
+}
+
 ItemOperacao encontraOperacao(string nomeOperacao) {
 	map<string,ItemOperacao>::const_iterator temp = listaOperacao.find(nomeOperacao);
 	return temp != listaOperacao.end() ? temp->second : nullOp;

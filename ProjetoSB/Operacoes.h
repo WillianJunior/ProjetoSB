@@ -36,7 +36,7 @@ static const map<string,ItemOperacao> montaOperacoes () {
 	mapOp["sub.s"] = {"sub.s", FR, "010001", "000000", "10000"};
 	mapOp["sub.d"] = {"sub.d", FR, "010001", "000001", "10001"};
 	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
-	mapOp["j"] = {"j", J, "x", "x", "x"};
+	mapOp["j"] = {"j", J, "000010", "x", "x"};
 	return mapOp;
 }
 
@@ -98,9 +98,7 @@ public:
 	bool verificaLabel(string label);
 	void prettyPrinter();
 	// TODO
-	string conversaoBinaria() throw (runtime_error) {
-		return NULL;
-	}
+	string conversaoBinaria() throw (runtime_error);
 	void setEndereco(const string& endereco) {
 		this->endereco = endereco;
 	}

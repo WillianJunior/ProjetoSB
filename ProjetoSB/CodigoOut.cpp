@@ -15,10 +15,6 @@ void CodigoOut::novaLinha(string linha) {
 	codigo.push_front(linha);
 }
 
-void CodigoOut::setLinha(int numLinha, string novaLinha) {
-
-}
-
 void CodigoOut::escreveSaida() {
 	if (Saida.eof()) {
 		Saida.close();

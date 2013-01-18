@@ -29,7 +29,6 @@ public:
 		abreArquivo();
 	};
 	void novaLinha(string linha);
-	void setLinha(int numLinha,string novaLinha);
 	void escreveSaida(void);
 	void mostraSaida ();
 private:
