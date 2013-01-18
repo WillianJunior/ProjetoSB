@@ -58,6 +58,10 @@ public:
 	virtual ~Operacao() {};
 	virtual string conversaoBinaria() = 0;
 	virtual void prettyPrinter() = 0;
+	virtual bool verificaNome(string nomeOperacao) = 0;
+	virtual bool verificaLabel(string label) = 0;
+	string getOperacao () {return operacao.nome;};
+	virtual void setEndereco(const string& endereco) = 0;
 
 protected:
 	ItemOperacao operacao;
@@ -67,7 +71,10 @@ class OperacaoBinaria:public Operacao {
 public:
 	OperacaoBinaria (list<string> tokens) throw (runtime_error);
 	string conversaoBinaria() throw (runtime_error);
+	bool verificaNome(string nomeOperacao);
+	bool verificaLabel(string label);
 	void prettyPrinter();
+	void setEndereco(const string& endereco);
 private:
 	string rs, rt, rd;
 	void montaRegistradoresR(string& saida) throw (runtime_error);
@@ -91,7 +98,14 @@ public:
 	bool verificaLabel(string label);
 	void prettyPrinter();
 	// TODO
-	string conversaoBinaria() throw (runtime_error) {return NULL;};
+	string conversaoBinaria() throw (runtime_error) {
+		return NULL;
+	}
+	void setEndereco(const string& endereco) {
+		this->endereco = endereco;
+	}
+
+	;
 
 private:
 	string conversaoIntBinario(int Endereco);

@@ -63,42 +63,41 @@ void Montador::primeiraPassagem() throw (runtime_error) {
 	}
 
 	//A lista de instrucoes ja esta montada. Sera usada na segunda passagem.
-		cout << "aki" << endl;
-		list<Operacao*>::iterator it;
-		it = listaInstrucoes.begin();
-		for (;it != listaInstrucoes.end();it++) {
-			(*it)->prettyPrinter();
-		}
-}
-
-void Montador::segundaPassagem() throw (runtime_error) {
-
-	//Contador de posicoes
-	list<Operacao>::iterator i;
-	list<ItemLabel>::iterator j;
-
-
 	cout << "aki" << endl;
 	list<Operacao*>::iterator it;
 	it = listaInstrucoes.begin();
 	for (;it != listaInstrucoes.end();it++) {
 		(*it)->prettyPrinter();
 	}
+}
 
-//	for(i = listaInstrucoes.begin(); i<listaInstrucoes.end(); i++){
-//		//Procura o endereco do label na lista de labels
-//		if(i->verificaNome("j"){
-//			for(j = listaLabels.begin(); j<listaLabels.end(); j++){
-//				if(i->verificaLabel(j->label)){
+void Montador::segundaPassagem() throw (runtime_error) {
 
-//					i->atualizarEndereco(j->endereco);
-//					listaInstrucoes.erase(i);
-//					listaInstrucoes.insert(i,aux);
-//					i->
-//				}
-//			}
-//		}
-//	}
+	//Contador de posicoes
+	list<Operacao*>::iterator i;
+	list<ItemLabel>::iterator j;
+
+
+
+
+	for(i = listaInstrucoes.begin(); i != listaInstrucoes.end(); i++){
+		//Procura o endereco do label na lista de labels
+		if((*i)->verificaNome("j")){
+			for(j = listaLabels.begin(); j!= listaLabels.end(); j++){
+				if((*i)->verificaLabel(j->label)){
+					stringstream enderecoString;
+					enderecoString << j->endereco;
+					(*i)->setEndereco(enderecoString.str());
+				}
+			}
+		}
+	}
+	cout << "Willian boiola" << endl;
+		list<Operacao*>::iterator it;
+		it = listaInstrucoes.begin();
+		for (;it != listaInstrucoes.end();it++) {
+			(*it)->prettyPrinter();
+		}
 }
 
 

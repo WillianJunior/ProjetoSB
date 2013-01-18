@@ -64,6 +64,19 @@ void OperacaoBinaria::prettyPrinter() {
 	cout << operacao.nome << " " << rs << " " << rt << " " << rd << endl;
 }
 
+bool OperacaoBinaria::verificaLabel(string nomeOperacao){
+	 throw runtime_error("Este metodo nao pode ser chamado nesta classe");
+}
+
+void OperacaoBinaria::setEndereco(const string& endereco){
+	throw runtime_error("Este metodo nao pode ser chamado nesta classe");
+}
+bool OperacaoBinaria::verificaNome(string nomeOperacao){
+	if(operacao.nome == nomeOperacao)
+		return true;
+	else
+		return false;
+}
 
 OperacaoJump::OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error) {
 
