@@ -15,13 +15,6 @@ void CodigoOut::novaLinha(string linha) {
 	codigo.push_front(linha);
 }
 
-string CodigoOut::pegaLinha(int numLinha) {
-	int i;
-	for(i = 0; i <= numLinha/4;i++)
-		url = CodIn.pegaLinha();
-	return url;
-}
-
 void CodigoOut::setLinha(int numLinha, string novaLinha) {
 
 }

@@ -56,7 +56,7 @@ void CodigoIn::abreArquivo(){
 	Entrada.open("entrada.s", ios::in);
 	if(!Entrada.is_open())
 		cout << "Problema ao abrir o arquivo de entrada!" << endl;
-	else cout << "Arquivo aberto com sucesso!" << endl;
+	else cout << "Arquivo aberto com sucesso! - In" << endl;
 
 
 }

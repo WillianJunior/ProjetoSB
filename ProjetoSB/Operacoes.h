@@ -23,19 +23,20 @@
 #include <exception>
 #include <sstream>
 #include <stdexcept>
+#include <iostream>
 
 using namespace std;
 
 static const map<string,ItemOperacao> montaOperacoes () {
 	map<string,ItemOperacao> mapOp;
-//	mapOp["add"] = {"add", R, "000000", "010000", "x"};
-//	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
+	//	mapOp["add"] = {"add", R, "000000", "010000", "x"};
+	//	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
 	mapOp["add.s"] = {"add.s", FR, "010001", "000000", "10000"};
 	mapOp["add.d"] = {"add.d", FR, "010001", "000001", "10001"};
 	mapOp["sub.s"] = {"sub.s", FR, "010001", "000000", "10000"};
 	mapOp["sub.d"] = {"sub.d", FR, "010001", "000001", "10001"};
 	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
-	mapOp["j"] = {"j", J, "\0", "\0", "\0"};
+	mapOp["j"] = {"j", J, "x", "x", "x"};
 	return mapOp;
 }
 
@@ -54,23 +55,21 @@ static const struct ItemOperacao nullOp = listaOperacao.find("nullOp")->second;
 
 class Operacao {
 public:
-	virtual ~Operacao() {}
-	//Verifica se o nome da operacao e igual ao da entrada
-	bool verificaNome(string nomeOperacao);
-	//Verifica se o label da operacao e igual ao da entrada
-	bool verificaLabel(string label);
+	virtual ~Operacao() {};
+	virtual string conversaoBinaria() = 0;
+	virtual void prettyPrinter() = 0;
 
 protected:
 	ItemOperacao operacao;
-	virtual string conversaoBinaria() {return NULL;};
-	virtual string conversaoJump(int Endereco) {return NULL;};
 };
 
 class OperacaoBinaria:public Operacao {
 public:
 	OperacaoBinaria (list<string> tokens) throw (runtime_error);
 	string conversaoBinaria() throw (runtime_error);
+	void prettyPrinter();
 private:
+	string rs, rt, rd;
 	void montaRegistradoresR(string& saida) throw (runtime_error);
 };
 
@@ -86,9 +85,17 @@ private:
 class OperacaoJump:public Operacao {
 public:
 	OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error);
+	//Verifica se o nome da operacao e igual ao da entrada
+	bool verificaNome(string nomeOperacao);
+	//Verifica se o label da operacao e igual ao da entrada
+	bool verificaLabel(string label);
+	void prettyPrinter();
+	// TODO
+	string conversaoBinaria() throw (runtime_error) {return NULL;};
+
 private:
-	string conversaoJump(int Endereco);
 	string conversaoIntBinario(int Endereco);
+	string endereco;
 };
 
 ItemOperacao encontraOperacao(string nomeOperacao);

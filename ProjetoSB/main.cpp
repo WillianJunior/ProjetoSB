@@ -23,14 +23,16 @@ void mostraHelp() {
 
 int main (int argc, char** argv) {
 
-	if (argc != 3 || string("-h").compare(argv[1]) == 0) {
-		mostraHelp();
-		return 0;
-	}
+//	if (argc != 3 || string("-h").compare(argv[1]) == 0) {
+//		mostraHelp();
+//		return 0;
+//	}
 
 	// cria os objetos de entrada e saida de arquivo
-	CodigoIn codigoIn(argv[1]);
-	CodigoOut codigoOut(argv[2]);
+//	CodigoIn codigoIn(argv[1]);
+//	CodigoOut codigoOut(argv[2]);
+	CodigoIn codigoIn;
+	CodigoOut codigoOut;
 
 	// monta o codigo assembly
 	Montador montador(&codigoIn, &codigoOut);

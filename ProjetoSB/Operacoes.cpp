@@ -11,24 +11,27 @@
 
 
 #include "Operacoes.h"
+#include <iostream>
 
 OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error) {
 
 	operacao = encontraOperacao(tokens.front());
 	tokens.pop_front();
-	operacao.rd = tokens.front();
+	rd = tokens.front();
 	tokens.pop_front();
-	operacao.rs = tokens.front();
+	rs = tokens.front();
 	tokens.pop_front();
-	operacao.rt = tokens.front();
+	rt = tokens.front();
+
+
 }
 
 void OperacaoBinaria::montaRegistradoresR(string& saida) throw (runtime_error) {
 	ItemRegistrador irs, irt, ird;
-	if (!(irs = encontraRegistrador(operacao.rs)).codigo.compare(none.codigo)
-			|| !(irt = encontraRegistrador(operacao.rt)).codigo.compare(none.codigo)
-			|| !(ird = encontraRegistrador(operacao.rd)).codigo.compare(none.codigo))
-		throw runtime_error("registradores inexistentes");
+	irs = encontraRegistrador(rs);
+	irt = encontraRegistrador(rt);
+	ird = encontraRegistrador(rd);
+
 
 	saida += irs.codigo;
 	saida += irt.codigo;
@@ -36,7 +39,7 @@ void OperacaoBinaria::montaRegistradoresR(string& saida) throw (runtime_error) {
 }
 
 string OperacaoBinaria::conversaoBinaria() throw (runtime_error) {
-	string saida;
+	string saida("");
 	switch (operacao.tipo) {
 	case FR:
 		saida = operacao.opcode;
@@ -44,12 +47,12 @@ string OperacaoBinaria::conversaoBinaria() throw (runtime_error) {
 		montaRegistradoresR(saida);
 		saida += operacao.funct;
 		break;
-//	case R:
-//		saida = operacao.opcode;
-//		montaRegistradoresR(saida);
-//		saida += "000000"; // TODO melhorar para incorporar o shamt
-//		saida += operacao.funct;
-//		break;
+		//	case R:
+		//		saida = operacao.opcode;
+		//		montaRegistradoresR(saida);
+		//		saida += "000000"; // TODO melhorar para incorporar o shamt
+		//		saida += operacao.funct;
+		//		break;
 
 	default:
 		throw runtime_error("operação não implementada para operação binaria");
@@ -57,21 +60,19 @@ string OperacaoBinaria::conversaoBinaria() throw (runtime_error) {
 	return saida;
 }
 
+void OperacaoBinaria::prettyPrinter() {
+	cout << operacao.nome << " " << rs << " " << rt << " " << rd << endl;
+}
+
+
 OperacaoJump::OperacaoJump (list<string> tokens, int Endereco) throw (runtime_error) {
 
 	operacao = encontraOperacao(tokens.front());
 	tokens.pop_front();
 	if(Endereco != -1)
-		operacao.endereco = conversaoJump(Endereco);
+		endereco = conversaoIntBinario(Endereco);
 	else
-		operacao.endereco = tokens.front();
-}
-
-string OperacaoJump::conversaoJump(int Endereco){
-	string saida;
-
-	saida = conversaoIntBinario(Endereco);
-	return saida;
+		endereco = tokens.front();
 }
 
 string OperacaoJump::conversaoIntBinario(int Endereco){
@@ -90,18 +91,22 @@ string OperacaoJump::conversaoIntBinario(int Endereco){
 	return valor;
 }
 
-bool Operacao::verificaNome(string nomeOperacao){
+bool OperacaoJump::verificaNome(string nomeOperacao){
 	if(operacao.nome == nomeOperacao)
 		return true;
 	else
 		return false;
 }
 
-bool Operacao::verificaLabel(string label){
-	if(operacao.endereco == label)
+bool OperacaoJump::verificaLabel(string label){
+	if(endereco == label)
 		return true;
 	else
 		return false;
+}
+
+void OperacaoJump::prettyPrinter() {
+	cout << operacao.nome << " " << endereco << endl;
 }
 
 ItemOperacao encontraOperacao(string nomeOperacao) {
