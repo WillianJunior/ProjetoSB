@@ -1,10 +1,3 @@
-/*
- * Registradores.cpp
- *
- *  Created on: Jan 11, 2013
- *      Author: willian
- */
-
 #include "Registradores.h"
 
 ItemRegistrador encontraRegistrador(string nomeRegistrador) {

@@ -1,9 +1,3 @@
-/*
- * main.cpp
- *
- */
-
-
 #include <iostream>
 #include "Registradores.h"
 #include "Operacoes.h"
@@ -36,7 +30,12 @@ int main (int argc, char** argv) {
 
 	// monta o codigo assembly
 	Montador montador(&codigoIn, &codigoOut);
-	montador.monta();
+	try {
+		montador.monta();
+	} catch (runtime_error *e) {
+		cout << "Erro: " << e->what() << endl;
+		return -1;
+	}
 
 	// escreve no arquivo a saida
 	codigoOut.mostraSaida();
