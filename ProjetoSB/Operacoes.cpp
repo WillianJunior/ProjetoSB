@@ -1,5 +1,7 @@
 #include "Operacoes.h"
 #include <iostream>
+#include <algorithm>
+#include <stdio.h>
 
 OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error*) {
 
@@ -74,23 +76,32 @@ OperacaoJump::OperacaoJump (list<string> tokens, int Endereco) throw (runtime_er
 }
 
 string OperacaoJump::conversaoBinaria() throw (runtime_error*) {
-	// TODO fazer a coversão binaria de operaçoes jump
-	return "00000";
+	string saida("");
+	stringstream enderecoInt(endereco);
+
+
+	int temp;
+	enderecoInt >> temp;
+
+	saida = operacao.opcode;
+	saida += endereco = conversaoIntBinario(temp);
+	return saida;
 }
 
-string OperacaoJump::conversaoIntBinario(int Endereco){
+string OperacaoJump::conversaoIntBinario(int enderecoInt){
 
 	int resto = 0;
 	string valor;
 
-	while(Endereco > 0)
-	{
-		resto = Endereco % 2;
-		Endereco /= 2;
+	while(enderecoInt > 0)	{
+		resto = enderecoInt % 2;
+		enderecoInt /= 2;
 		if(resto == 0) valor.push_back('0');
 		else valor.push_back('1');
 	}
-	while(valor.length()<=26) valor.insert(0,"0");
+	reverse( valor.begin(), valor.end() );
+
+	while(valor.length()<26) valor.insert(0,"0");
 	return valor;
 }
 
