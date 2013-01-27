@@ -78,14 +78,7 @@ void Montador::segundaPassagem() throw (runtime_error*) {
 	}
 }
 
-list<string> Montador::separaTokens(string linha)throw (runtime_error*) {
-
-	// troca as virgulas por espaços em branco
-	int virgula, numVirgulas = 0;
-	while ((virgula = linha.find(',')) != string::npos) {
-		linha.replace(virgula, 1," ");
-		numVirgulas++;
-	}
+vector<string> separaSubTokens(string linha) {
 
 	// separa por espaço em branco
 	istringstream linhaStream(linha);
@@ -94,11 +87,37 @@ list<string> Montador::separaTokens(string linha)throw (runtime_error*) {
 			istream_iterator<string>(),
 			back_inserter<vector<string> >(tokens));
 
-	list<string> tokensSaida(tokens.begin(),tokens.end());
+	return tokens;
+}
+
+list<string> Montador::separaTokens(string linha)throw (runtime_error*) {
+
+	list<string> tokensSaida;
+	vector<string> tokens, subTokens;
+	subTokens = separaSubTokens(linha);
+	tokens.push_back(subTokens[0]);
+	tokens.push_back("");
+	for (size_t j = 1; j < subTokens.size(); j++)
+		tokens[1] += subTokens[j];
+
+	// separa completamente os tokens
+	int virgula, numVirgulas = 0;
+	for (size_t i = 0; i < tokens.size(); i++) {
+		// troca as virgulas de cada subtoken por espaço
+		while ((virgula = tokens[i].find(',')) != string::npos) {
+			tokens[i].replace(virgula, 1," ");
+			numVirgulas++;
+		}
+		// separa os subtokens por espaço
+		subTokens = separaSubTokens(tokens[i]);
+		for (size_t ii = 0; ii < subTokens.size(); ii++) {
+			tokensSaida.push_back(subTokens[ii]);
+		}
+	}
+
 	ItemOperacao op = encontraOperacao(tokens[0]);
 
-	list<string>	tokensSaidaValidado;
-	tokensSaidaValidado = validaTokens(tokensSaida, numVirgulas);
+	validaTokens(tokensSaida, numVirgulas);
 
 	return tokensSaida;
 }
@@ -110,8 +129,6 @@ Operacao* Montador::pegaPredicado(list<string> tokens) throw (runtime_error*) {
 	switch (op.tipo) {
 	case FR:
 		return new OperacaoBinaria(tokens);
-	case R:
-		return new OperacaoBinaria(tokens);
 	case J:
 		return new OperacaoJump(tokens,-1);
 	default:
@@ -119,7 +136,7 @@ Operacao* Montador::pegaPredicado(list<string> tokens) throw (runtime_error*) {
 	}
 }
 
-list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (runtime_error*) {
+void Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (runtime_error*) {
 
 	ItemOperacao op = encontraOperacao(listaTokens.front());
 	list<string>::const_iterator i;
@@ -146,9 +163,6 @@ list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) t
 		}
 
 		break;
-	case R:
-		// TODO espaço para validação de operações do tipo R
-		break;
 	case J:
 		if (numVirgulas != 0)
 			throw new runtime_error("Problema no numero de virgulas " + numVirgulas);
@@ -161,8 +175,7 @@ list<string> Montador::validaTokens(list<string> listaTokens, int numVirgulas) t
 		}
 		break;
 	default:
-		throw new runtime_error("operação não identificada");
+		throw new runtime_error("Operação não identificada");
 	}
 
-	return listaTokens;
 }

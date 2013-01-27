@@ -12,16 +12,17 @@
 #include <sstream>
 #include <stdexcept>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
 static const map<string,ItemOperacao> montaOperacoes () {
 	map<string,ItemOperacao> mapOp;
-	mapOp["add"] = {"add", R, "000000", "010000", "x"};
-	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
+//	mapOp["add"] = {"add", R, "000000", "010000", "x"};
+//	mapOp["sub"] = {"sub", R, "000000", "010010", "x"};
 	mapOp["add.s"] = {"add.s", FR, "010001", "000000", "10000"};
-	mapOp["add.d"] = {"add.d", FR, "010001", "000001", "10001"};
-	mapOp["sub.s"] = {"sub.s", FR, "010001", "000000", "10000"};
+	mapOp["add.d"] = {"add.d", FR, "010001", "000000", "10001"};
+	mapOp["sub.s"] = {"sub.s", FR, "010001", "000001", "10000"};
 	mapOp["sub.d"] = {"sub.d", FR, "010001", "000001", "10001"};
 	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
 	mapOp["j"] = {"j", J, "000011", "x", "x"};
@@ -31,8 +32,8 @@ static const map<string,ItemOperacao> montaOperacoes () {
 static const map<string,ItemOperacao> listaOperacao = montaOperacoes();
 
 
-static const struct ItemOperacao add = listaOperacao.find("add")->second;
-static const struct ItemOperacao sub = listaOperacao.find("sub")->second;
+//static const struct ItemOperacao add = listaOperacao.find("add")->second;
+//static const struct ItemOperacao sub = listaOperacao.find("sub")->second;
 static const struct ItemOperacao adds = listaOperacao.find("add.s")->second;
 static const struct ItemOperacao addd = listaOperacao.find("add.d")->second;
 static const struct ItemOperacao subs = listaOperacao.find("sub.s")->second;

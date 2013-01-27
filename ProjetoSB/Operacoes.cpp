@@ -1,7 +1,4 @@
 #include "Operacoes.h"
-#include <iostream>
-#include <algorithm>
-#include <stdio.h>
 
 OperacaoBinaria::OperacaoBinaria (list<string> tokens) throw (runtime_error*) {
 
@@ -21,8 +18,8 @@ void OperacaoBinaria::montaRegistradoresR(string& saida) throw (runtime_error*) 
 	irt = encontraRegistrador(rt);
 	ird = encontraRegistrador(rd);
 
-	saida += irs.codigo;
 	saida += irt.codigo;
+	saida += irs.codigo;
 	saida += ird.codigo;
 }
 
@@ -33,12 +30,6 @@ string OperacaoBinaria::conversaoBinaria() throw (runtime_error*) {
 		saida = operacao.opcode;
 		saida += operacao.fmt;
 		montaRegistradoresR(saida);
-		saida += operacao.funct;
-		break;
-	case R:
-		saida = operacao.opcode;
-		montaRegistradoresR(saida);
-		saida += "000000"; // TODO melhorar para incorporar o shamt
 		saida += operacao.funct;
 		break;
 	default:

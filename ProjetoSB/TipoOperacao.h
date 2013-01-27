@@ -14,9 +14,7 @@
 #define _TIPOOPERACAO_H
 
 enum TipoOperacao {
-	R,
 	FR,
-//	I,
 	J,
 	NULLOP,
 };
