@@ -25,7 +25,7 @@ static const map<string,ItemOperacao> montaOperacoes () {
 	mapOp["sub.s"] = {"sub.s", FR, "010001", "000001", "10000"};
 	mapOp["sub.d"] = {"sub.d", FR, "010001", "000001", "10001"};
 	mapOp["nullOp"] = {"x", NULLOP, "x", "x", "x"};
-	mapOp["j"] = {"j", J, "000011", "x", "x"};
+	mapOp["j"] = {"j", J, "000010", "x", "x"};
 	return mapOp;
 }
 

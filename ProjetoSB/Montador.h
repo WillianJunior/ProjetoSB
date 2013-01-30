@@ -9,6 +9,7 @@
 #include <list>
 #include <vector>
 #include <iostream>
+#include <algorithm>
 
 #include "Operacoes.h"
 
@@ -27,6 +28,7 @@ private:
 	void segundaPassagem() throw (runtime_error*);
 	list<string> separaTokens(string linha)throw (runtime_error*);
 	Operacao* pegaPredicado(list<string> tokens) throw (runtime_error*);
+	void validaLabel(string tempLabel) throw (runtime_error*);
 	void validaTokens(list<string> listaTokens, int numVirgulas)throw (runtime_error*);
 };
 

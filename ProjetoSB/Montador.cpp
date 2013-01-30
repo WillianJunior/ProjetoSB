@@ -31,8 +31,11 @@ void Montador::primeiraPassagem() throw (runtime_error*) {
 			temp_label.endereco = PLC;
 
 			linha = linha.substr(posicao_fim_label+1, (linha.size()-posicao_fim_label));
+			validaLabel(temp_label.label);
 			listaLabels.push_back(temp_label);
 		}
+
+		//Ficaria aqui o tratamento dos comentarios.
 
 		if(!linha.empty()){
 			// pega uma lista de tokens
@@ -41,7 +44,7 @@ void Montador::primeiraPassagem() throw (runtime_error*) {
 			// verifica o tipo de predicado
 			predicado = pegaPredicado(tokens);
 			listaInstrucoes.push_back(predicado);
-			PLC += 4;
+			PLC += 1;
 		}
 	}
 }
@@ -67,7 +70,7 @@ void Montador::segundaPassagem() throw (runtime_error*) {
 				}
 			}
 			if (!tipoj)
-				throw runtime_error("label não encontrado!");
+				throw new runtime_error("Label não encontrado!");
 		}
 	}
 
@@ -136,11 +139,27 @@ Operacao* Montador::pegaPredicado(list<string> tokens) throw (runtime_error*) {
 	}
 }
 
+void Montador::validaLabel (string label) throw (runtime_error*) {
+
+	list<ItemLabel>::iterator i;
+
+	if (isdigit(label[0]))
+		throw new runtime_error("Label não pode começar com numero");
+
+	for (i = listaLabels.begin(); i != listaLabels.end(); i++) {
+		if (i->label.compare(label) == 0) {
+			throw new runtime_error("Label repetido");
+		}
+	}
+
+}
+
 void Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (runtime_error*) {
 
 	ItemOperacao op = encontraOperacao(listaTokens.front());
-	list<string>::const_iterator i;
+	list<string>::iterator i;
 	stringstream virgulas;
+	string label;
 	virgulas << numVirgulas;
 	switch (op.tipo) {
 	case FR:
@@ -164,8 +183,6 @@ void Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (ru
 
 		break;
 	case J:
-		if (numVirgulas != 0)
-			throw new runtime_error("Problema no numero de virgulas " + numVirgulas);
 		if (listaTokens.empty())
 			throw new runtime_error("Lista de tokens vazia - OperacaoBinaria");
 		if (listaTokens.size() != 2){
@@ -173,6 +190,8 @@ void Montador::validaTokens(list<string> listaTokens, int numVirgulas) throw (ru
 			num << listaTokens.size();
 			throw new runtime_error("Operação J com numero errado de argumentos, esperava 2 mas tem " + num.str());
 		}
+		if (numVirgulas != 0)
+			throw new runtime_error("Problema no numero de virgulas " + numVirgulas);
 		break;
 	default:
 		throw new runtime_error("Operação não identificada");
